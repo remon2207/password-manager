@@ -1,4 +1,4 @@
-import { addPw, pwUpdate } from './pw'
+import { addPw, deletePw, pwUpdate } from './pw'
 import { addUser, deleteUser } from './user'
 
 import type { MutationResolvers } from 'generated/graphql'
@@ -25,5 +25,6 @@ export const mutation: MutationResolvers = {
       pw.password,
       pw.twoFactor,
       pw.secret
-    )
+    ),
+  pwDeleter: (_, { id }) => deletePw(id)
 }

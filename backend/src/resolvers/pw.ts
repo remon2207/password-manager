@@ -128,3 +128,22 @@ export const pwUpdate: Pw = async (
 
   throw new ApolloError('Not email')
 }
+
+export const deletePw = async (id: number) => {
+  const prisma = new PrismaClient()
+  try {
+    const message = {
+      message: 'Deleted password info successfully'
+    }
+
+    await prisma.password.delete({
+      where: {
+        id
+      }
+    })
+
+    return message
+  } catch (e) {
+    throw new ApolloError('Password info not found', 'NOT_FOUND')
+  }
+}

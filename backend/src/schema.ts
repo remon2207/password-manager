@@ -13,6 +13,7 @@ export const typeDefs = gql`
     userDeleter(id: Int!): Message!
     pwRegister(pw: NewPwInfoInput!): Message!
     pwUpdater(pw: UpdatePwInfoInput!): Message!
+    pwDeleter(id: Int!): Message!
   }
 
   type Message {
