@@ -50,7 +50,7 @@ export const addUser = async (name: string, email: string) => {
       throw new ApolloError('Account is already registed')
     } else {
       const message = {
-        message: 'Account created successfully'
+        message: 'Deleted account successfully'
       }
 
       await prisma.user.create({
@@ -70,7 +70,7 @@ export const addUser = async (name: string, email: string) => {
 export const deleteUser = async (id: number) => {
   const prisma = new PrismaClient()
   const message = {
-    message: 'Account deleted successfully'
+    message: 'Deleted account successfully'
   }
   const deletePws = prisma.password.deleteMany({
     where: {
