@@ -66,3 +66,28 @@ export const addUser = async (name: string, email: string) => {
     throw new ApolloError('Not email')
   }
 }
+
+export const deleteUser = async (id: number) => {
+  const prisma = new PrismaClient()
+  const message = {
+    message: 'Account deleted successfully'
+  }
+  const deletePws = prisma.password.deleteMany({
+    where: {
+      id
+    }
+  })
+  const deleteUser = prisma.user.delete({
+    where: {
+      id
+    }
+  })
+
+  try {
+    await prisma.$transaction([deletePws, deleteUser])
+  } catch (e) {
+    throw new ApolloError('Account not found', 'NOT_FOUND')
+  }
+
+  return message
+}

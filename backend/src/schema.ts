@@ -8,6 +8,7 @@ export const typeDefs = gql`
 
   type Mutation {
     userRegister(user: NewUserInput!): Message!
+    userDeleter(id: Int!): Message!
   }
 
   type Message {

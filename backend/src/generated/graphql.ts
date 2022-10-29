@@ -21,7 +21,13 @@ export type Message = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  userDeleter: Message;
   userRegister: Message;
+};
+
+
+export type MutationUserDeleterArgs = {
+  id: Scalars['Int'];
 };
 
 
@@ -149,6 +155,7 @@ export type MessageResolvers<ContextType = any, ParentType extends ResolversPare
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  userDeleter?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationUserDeleterArgs, 'id'>>;
   userRegister?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationUserRegisterArgs, 'user'>>;
 };
 
