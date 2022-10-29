@@ -1,7 +1,8 @@
-import { getUsers } from './user'
+import { getUser, getUsers } from './user'
 
 import type { QueryResolvers } from 'generated/graphql'
 
 export const query: QueryResolvers = {
-  getUsers: () => getUsers()
+  getUsers: () => getUsers(),
+  getUser: (_, { id }) => getUser(id)
 }
