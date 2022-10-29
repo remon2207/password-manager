@@ -1,0 +1,10 @@
+{
+  "ignore": [".git", "node_modules"],
+  "execMap": {
+    "js": "node ./dist/main.js"
+  },
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "ext": "js"
+}
