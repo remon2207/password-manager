@@ -54,9 +54,15 @@ export type PwInfo = {
 
 export type Query = {
   __typename?: 'Query';
+  getPw: PwInfo;
   getPws: Array<Maybe<PwInfo>>;
   getUser: User;
   getUsers: Array<Maybe<User>>;
+};
+
+
+export type QueryGetPwArgs = {
+  id: Scalars['Int'];
 };
 
 
@@ -192,6 +198,7 @@ export type PwInfoResolvers<ContextType = any, ParentType extends ResolversParen
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  getPw?: Resolver<ResolversTypes['PwInfo'], ParentType, ContextType, RequireFields<QueryGetPwArgs, 'id'>>;
   getPws?: Resolver<Array<Maybe<ResolversTypes['PwInfo']>>, ParentType, ContextType, RequireFields<QueryGetPwsArgs, 'userId'>>;
   getUser?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<QueryGetUserArgs, 'id'>>;
   getUsers?: Resolver<Array<Maybe<ResolversTypes['User']>>, ParentType, ContextType>;

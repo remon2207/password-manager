@@ -5,6 +5,7 @@ export const typeDefs = gql`
     getUsers: [User]!
     getUser(id: Int!): User!
     getPws(userId: Int!): [PwInfo]!
+    getPw(id: Int!): PwInfo!
   }
 
   type Mutation {
