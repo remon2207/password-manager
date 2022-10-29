@@ -86,3 +86,45 @@ export const addPw: Pw = async (
   }
   throw new UserInputError('Not email')
 }
+
+export const pwUpdate: Pw = async (
+  id,
+  service,
+  email,
+  name,
+  password,
+  twoFactor,
+  secret
+) => {
+  const prisma = new PrismaClient()
+  const isEmptyService = validator.isEmpty(service, { ignore_whitespace: true })
+  const isEmptyEmail = validator.isEmpty(email, { ignore_whitespace: true })
+  const isEmail = validator.isEmail(email)
+
+  if (isEmptyService) {
+    throw new UserInputError('Should input service name')
+  }
+
+  if (isEmptyEmail || isEmail) {
+    const message = {
+      message: 'Password info updated successfully'
+    }
+    await prisma.password.update({
+      where: {
+        id
+      },
+      data: {
+        service,
+        email,
+        name,
+        password,
+        twoFactor,
+        secret
+      }
+    })
+
+    return message
+  }
+
+  throw new ApolloError('Not email')
+}

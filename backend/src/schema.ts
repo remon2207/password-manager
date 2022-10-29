@@ -12,6 +12,7 @@ export const typeDefs = gql`
     userRegister(user: NewUserInput!): Message!
     userDeleter(id: Int!): Message!
     pwRegister(pw: NewPwInfoInput!): Message!
+    pwUpdater(pw: UpdatePwInfoInput!): Message!
   }
 
   type Message {
@@ -42,6 +43,16 @@ export const typeDefs = gql`
 
   input NewPwInfoInput {
     userId: Int!
+    service: String!
+    email: String!
+    name: String!
+    password: String!
+    twoFactor: Boolean!
+    secret: String!
+  }
+
+  input UpdatePwInfoInput {
+    id: Int!
     service: String!
     email: String!
     name: String!
