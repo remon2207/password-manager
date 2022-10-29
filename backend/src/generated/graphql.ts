@@ -40,10 +40,28 @@ export type NewUserInput = {
   name: Scalars['String'];
 };
 
+export type PwInfo = {
+  __typename?: 'PwInfo';
+  email: Scalars['String'];
+  id: Scalars['Int'];
+  name: Scalars['String'];
+  password: Scalars['String'];
+  secret: Scalars['String'];
+  service: Scalars['String'];
+  twoFactor: Scalars['Boolean'];
+  userId: Scalars['Int'];
+};
+
 export type Query = {
   __typename?: 'Query';
+  getPws: Array<Maybe<PwInfo>>;
   getUser: User;
   getUsers: Array<Maybe<User>>;
+};
+
+
+export type QueryGetPwsArgs = {
+  userId: Scalars['Int'];
 };
 
 
@@ -132,6 +150,7 @@ export type ResolversTypes = {
   Message: ResolverTypeWrapper<Message>;
   Mutation: ResolverTypeWrapper<{}>;
   NewUserInput: NewUserInput;
+  PwInfo: ResolverTypeWrapper<PwInfo>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
   User: ResolverTypeWrapper<User>;
@@ -144,6 +163,7 @@ export type ResolversParentTypes = {
   Message: Message;
   Mutation: {};
   NewUserInput: NewUserInput;
+  PwInfo: PwInfo;
   Query: {};
   String: Scalars['String'];
   User: User;
@@ -159,7 +179,20 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   userRegister?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationUserRegisterArgs, 'user'>>;
 };
 
+export type PwInfoResolvers<ContextType = any, ParentType extends ResolversParentTypes['PwInfo'] = ResolversParentTypes['PwInfo']> = {
+  email?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  password?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  secret?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  service?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  twoFactor?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+  userId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  getPws?: Resolver<Array<Maybe<ResolversTypes['PwInfo']>>, ParentType, ContextType, RequireFields<QueryGetPwsArgs, 'userId'>>;
   getUser?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<QueryGetUserArgs, 'id'>>;
   getUsers?: Resolver<Array<Maybe<ResolversTypes['User']>>, ParentType, ContextType>;
 };
@@ -174,6 +207,7 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
 export type Resolvers<ContextType = any> = {
   Message?: MessageResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
+  PwInfo?: PwInfoResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
 };
