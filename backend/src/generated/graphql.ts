@@ -21,8 +21,14 @@ export type Message = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  pwRegister: Message;
   userDeleter: Message;
   userRegister: Message;
+};
+
+
+export type MutationPwRegisterArgs = {
+  pw: NewPwInfoInput;
 };
 
 
@@ -33,6 +39,16 @@ export type MutationUserDeleterArgs = {
 
 export type MutationUserRegisterArgs = {
   user: NewUserInput;
+};
+
+export type NewPwInfoInput = {
+  email: Scalars['String'];
+  name: Scalars['String'];
+  password: Scalars['String'];
+  secret: Scalars['String'];
+  service: Scalars['String'];
+  twoFactor: Scalars['Boolean'];
+  userId: Scalars['Int'];
 };
 
 export type NewUserInput = {
@@ -155,6 +171,7 @@ export type ResolversTypes = {
   Int: ResolverTypeWrapper<Scalars['Int']>;
   Message: ResolverTypeWrapper<Message>;
   Mutation: ResolverTypeWrapper<{}>;
+  NewPwInfoInput: NewPwInfoInput;
   NewUserInput: NewUserInput;
   PwInfo: ResolverTypeWrapper<PwInfo>;
   Query: ResolverTypeWrapper<{}>;
@@ -168,6 +185,7 @@ export type ResolversParentTypes = {
   Int: Scalars['Int'];
   Message: Message;
   Mutation: {};
+  NewPwInfoInput: NewPwInfoInput;
   NewUserInput: NewUserInput;
   PwInfo: PwInfo;
   Query: {};
@@ -181,6 +199,7 @@ export type MessageResolvers<ContextType = any, ParentType extends ResolversPare
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  pwRegister?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationPwRegisterArgs, 'pw'>>;
   userDeleter?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationUserDeleterArgs, 'id'>>;
   userRegister?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationUserRegisterArgs, 'user'>>;
 };

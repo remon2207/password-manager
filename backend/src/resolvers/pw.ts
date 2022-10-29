@@ -31,3 +31,58 @@ export const getPw = async (id: number) => {
   return pw
 }
 
+export const addPw: Pw = async (
+  userId,
+  service,
+  email,
+  name,
+  password,
+  twoFactor,
+  secret
+) => {
+  const prisma = new PrismaClient()
+  const isEmptyService = validator.isEmpty(service, { ignore_whitespace: true })
+  const isEmptyEmail = validator.isEmpty(email, { ignore_whitespace: true })
+  const isEmptyPw = validator.isEmpty(password, { ignore_whitespace: true })
+  const isEmail = validator.isEmail(email)
+
+  const createPwInfo = async (pw: string) => {
+    const message = {
+      message: 'Password info created successfully'
+    }
+    await prisma.password.create({
+      data: {
+        userId,
+        service,
+        email,
+        name,
+        password: pw,
+        twoFactor,
+        secret
+      }
+    })
+
+    return message
+  }
+
+  if (isEmptyService) {
+    throw new UserInputError('Should input service name')
+  }
+
+  if (isEmptyEmail && isEmptyPw) {
+    return createPwInfo(password)
+  }
+
+  const hashPw = await bcrypt.hash(password, 10)
+
+  if (isEmptyEmail && !isEmptyPw) {
+    return createPwInfo(hashPw)
+  }
+  if (isEmail && isEmptyPw) {
+    return createPwInfo(password)
+  }
+  if (isEmail && !isEmptyPw) {
+    return createPwInfo(hashPw)
+  }
+  throw new UserInputError('Not email')
+}

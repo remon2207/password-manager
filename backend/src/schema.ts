@@ -11,6 +11,7 @@ export const typeDefs = gql`
   type Mutation {
     userRegister(user: NewUserInput!): Message!
     userDeleter(id: Int!): Message!
+    pwRegister(pw: NewPwInfoInput!): Message!
   }
 
   type Message {
@@ -37,5 +38,15 @@ export const typeDefs = gql`
   input NewUserInput {
     name: String!
     email: String!
+  }
+
+  input NewPwInfoInput {
+    userId: Int!
+    service: String!
+    email: String!
+    name: String!
+    password: String!
+    twoFactor: Boolean!
+    secret: String!
   }
 `
