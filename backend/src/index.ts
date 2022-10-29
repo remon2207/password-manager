@@ -3,33 +3,15 @@ import http from 'http'
 
 import {
   ApolloServerPluginDrainHttpServer,
-  ApolloServerPluginLandingPageLocalDefault,
-  gql
+  ApolloServerPluginLandingPageLocalDefault
 } from 'apollo-server-core'
 import { ApolloServer } from 'apollo-server-express'
 import express from 'express'
 
+import { resolvers } from 'resolvers'
+import { typeDefs } from 'schema'
+
 const port = process.env.PORT
-
-const hello = {
-  title: 'Hello, World!'
-}
-
-const typeDefs = gql`
-  type Hello {
-    title: String
-  }
-
-  type Query {
-    hello: Hello
-  }
-`
-
-const resolvers = {
-  Query: {
-    hello: () => hello
-  }
-}
 
 async function startApolloServer() {
   const app = express()
