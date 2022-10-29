@@ -48,7 +48,7 @@ export const addPw: Pw = async (
 
   const createPwInfo = async (pw: string) => {
     const message = {
-      message: 'Password info created successfully'
+      message: 'Created Password info successfully'
     }
     await prisma.password.create({
       data: {
@@ -107,7 +107,7 @@ export const pwUpdate: Pw = async (
 
   if (isEmptyEmail || isEmail) {
     const message = {
-      message: 'Password info updated successfully'
+      message: 'Updated password info successfully'
     }
     await prisma.password.update({
       where: {
