@@ -5,6 +5,8 @@ services:
       context: '.'
       dockerfile: './backend/Dockerfile'
     container_name: 'api'
+    volumes:
+      - './backend:/usr/src/app'
     environment:
       NODE_ENV: 'development'
     ports:
