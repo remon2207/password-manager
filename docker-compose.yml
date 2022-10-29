@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  api:
+    build:
+      context: '.'
+      dockerfile: './backend/Dockerfile'
+    container_name: 'api'
+    environment:
+      NODE_ENV: 'development'
+    ports:
+      - '${API_PORT:-4000}:4000'
+    command: 'npm run dev:watch'
