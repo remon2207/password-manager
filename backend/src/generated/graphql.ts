@@ -14,6 +14,26 @@ export type Scalars = {
   Float: number;
 };
 
+export type Message = {
+  __typename?: 'Message';
+  message: Scalars['String'];
+};
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  userRegister: Message;
+};
+
+
+export type MutationUserRegisterArgs = {
+  user: NewUserInput;
+};
+
+export type NewUserInput = {
+  email: Scalars['String'];
+  name: Scalars['String'];
+};
+
 export type Query = {
   __typename?: 'Query';
   getUser: User;
@@ -103,6 +123,9 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
+  Message: ResolverTypeWrapper<Message>;
+  Mutation: ResolverTypeWrapper<{}>;
+  NewUserInput: NewUserInput;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
   User: ResolverTypeWrapper<User>;
@@ -112,9 +135,21 @@ export type ResolversTypes = {
 export type ResolversParentTypes = {
   Boolean: Scalars['Boolean'];
   Int: Scalars['Int'];
+  Message: Message;
+  Mutation: {};
+  NewUserInput: NewUserInput;
   Query: {};
   String: Scalars['String'];
   User: User;
+};
+
+export type MessageResolvers<ContextType = any, ParentType extends ResolversParentTypes['Message'] = ResolversParentTypes['Message']> = {
+  message?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  userRegister?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationUserRegisterArgs, 'user'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
@@ -130,6 +165,8 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
 };
 
 export type Resolvers<ContextType = any> = {
+  Message?: MessageResolvers<ContextType>;
+  Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
 };
