@@ -30,7 +30,7 @@ services:
       dockerfile: './Dockerfile'
     container_name: 'nextjs'
     volumes:
-      - '.:/usr/src/app'
+      - './frontend:/usr/src/app'
     environment:
       NODE_ENV: 'development'
     ports:
