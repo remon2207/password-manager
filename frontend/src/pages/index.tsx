@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client'
 
-import { Nav } from 'components/atoms/headers/Nav'
 import { HomeTemp } from 'components/templates/HomeTemp'
 import { client } from 'utils/apollo-client'
+import { CellDataContext } from 'utils/context/celldata'
 
 import type { GetServerSideProps, NextPage } from 'next'
 
@@ -27,9 +27,9 @@ const Home: NextPage<Props> = ({ getPws }) => {
   const service = getPws.map((pw) => pw.service)
   return (
     <>
-      <HomeTemp />
-      {/* {service} */}
-      {/* <Nav href="/new" navText="新規作成" /> */}
+      <CellDataContext.Provider value={getPws}>
+        <HomeTemp />
+      </CellDataContext.Provider>
     </>
   )
 }
