@@ -1,13 +1,15 @@
-import { CreateBtn } from 'components/atoms/Headers/CreateBtn'
-import { SignOutBtn } from 'components/atoms/Headers/SignOutBtn'
-import { Title } from 'components/atoms/Headers/Title'
+import { Nav } from 'components/atoms/headers/Nav'
 
 export const HeaderMole: React.FC = () => {
   return (
     <>
-      <SignOutBtn className="page-transition-btn ml-auto" />
-      <Title className="text-2xl font-bold mx-auto" />
-      <CreateBtn className="page-transition-btn mr-auto" />
+      <Nav
+        className="page-transition-btn"
+        href="/signin"
+        navText="サインアウト"
+      />
+      <Nav href="/" navText="パスワード管理" />
+      <Nav className="page-transition-btn" href="/new" navText="新規作成" />
     </>
   )
 }
