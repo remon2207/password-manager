@@ -1,15 +1,21 @@
-import { HeaderCell } from "components/atoms/tables/HeaderCell"
+import { HeaderCell } from 'components/atoms/tables/HeaderCell'
 
 export const TableHeaderMole: React.FC = () => {
+  const cellsText = [
+    'Service',
+    'Email',
+    'Name',
+    'Password',
+    'TwoFactor',
+    'secret'
+  ]
+
   return (
     <>
       <tr>
-        <HeaderCell text="サービス" />
-        <HeaderCell text="メールアドレス" />
-        <HeaderCell text="名前" />
-        <HeaderCell text="パスワード" />
-        <HeaderCell text="2段階認証" />
-        <HeaderCell text="シークレット" />
+        {cellsText.map((cell) => (
+          <HeaderCell key={cell} className="break-all border p-2 text-[10px] sm:text-base" text={cell} />
+        ))}
       </tr>
     </>
   )
