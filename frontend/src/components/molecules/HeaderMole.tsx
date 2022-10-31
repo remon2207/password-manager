@@ -4,12 +4,12 @@ export const HeaderMole: React.FC = () => {
   return (
     <>
       <Nav
-        className="page-transition-btn"
+        className="page-transition-btn ml-auto"
         href="/signin"
-        navText="サインアウト"
+        navText="Sign out"
       />
-      <Nav href="/" navText="パスワード管理" />
-      <Nav className="page-transition-btn" href="/new" navText="新規作成" />
+      <Nav className="mx-auto" href="/" navText="Password manager" />
+      <Nav className="page-transition-btn mr-auto" href="/new" navText="Create new" />
     </>
   )
 }
