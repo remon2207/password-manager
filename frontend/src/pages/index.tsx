@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client'
 
+import { Nav } from 'components/atoms/headers/Nav'
 import { HomeTemp } from 'components/templates/HomeTemp'
 import { client } from 'utils/apollo-client'
 
@@ -27,7 +28,8 @@ const Home: NextPage<Props> = ({ getPws }) => {
   return (
     <>
       <HomeTemp />
-      {service}
+      {/* {service} */}
+      {/* <Nav href="/new" navText="新規作成" /> */}
     </>
   )
 }
