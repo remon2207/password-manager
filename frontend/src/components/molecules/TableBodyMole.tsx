@@ -1,16 +1,23 @@
-import { BodyCell } from "components/atoms/tables/BodyCell"
+import { useContext } from 'react'
+
+import { BodyCell } from 'components/atoms/tables/BodyCell'
+import { CellDataContext } from 'utils/context/celldata'
 
 export const TableBodyMole: React.FC = () => {
+  const cells = useContext(CellDataContext)
+
   return (
     <>
-      <tr>
-        <BodyCell text="service" />
-        <BodyCell text="email" />
-        <BodyCell text="name" />
-        <BodyCell text="password" />
-        <BodyCell text="twoFactor" />
-        <BodyCell text="secret" />
-      </tr>
+      {cells.map((cell) => (
+        <tr key={cell.id}>
+          <BodyCell text={cell.service} />
+          <BodyCell text={cell.email} />
+          <BodyCell text={cell.name} />
+          <BodyCell text={cell.password} />
+          <BodyCell text={cell.twoFactor} />
+          <BodyCell text={cell.secret} />
+        </tr>
+      ))}
     </>
   )
 }
