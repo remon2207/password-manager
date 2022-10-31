@@ -1,11 +1,12 @@
 type Props = {
-  text?: string
+  text?: string | number | boolean
+  className?: string
 }
 
-export const BodyCell: React.FC<Props> = ({ text }) => {
+export const BodyCell: React.FC<Props> = ({ text, className }) => {
   return (
     <>
-      <td>{text}</td>
+      <td className={className}>{text}</td>
     </>
   )
 }
