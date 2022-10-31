@@ -1,11 +1,12 @@
 type Props = {
-  text: string
+  text?: string
+  className?: string
 }
 
-export const HeaderCell: React.FC<Props> = ({ text }) => {
+export const HeaderCell: React.FC<Props> = ({ text, className }) => {
   return (
     <>
-      <th>{text}</th>
+      <th className={className}>{text}</th>
     </>
   )
 }
