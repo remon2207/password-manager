@@ -14,7 +14,7 @@ export const TableHeaderMole: React.FC = () => {
     <>
       <tr>
         {cellsText.map((cell) => (
-          <HeaderCell key={cell} className="break-all border p-2 text-[10px] sm:text-base" text={cell} />
+          <HeaderCell key={cell} className="table-cell" text={cell} />
         ))}
       </tr>
     </>

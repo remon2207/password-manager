@@ -13,3 +13,11 @@
   hover:shadow-none
   hover:transition;
 }
+
+.table-cell {
+  @apply break-all
+  border
+  p-2
+  text-[6.9px]
+  sm:text-base;
+}
