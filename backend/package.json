@@ -10,7 +10,10 @@
     "dev": "nodemon src/index.ts",
     "dev:build": "webpack --config webpack.dev.js",
     "dev:watch": "webpack --watch --config webpack.dev.js & nodemon ./dist/main.js",
-    "codegen": "graphql-codegen --config codegen.ts"
+    "codegen": "graphql-codegen --config codegen.ts",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint --fix",
+    "format": "prettier --write ./src"
   },
   "prisma": {
     "seed": "ts-node ./prisma/seed.ts"
