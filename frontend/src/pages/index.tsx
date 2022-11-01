@@ -24,7 +24,6 @@ const getPws = gql`
 type Props = GetPws
 
 const Home: NextPage<Props> = ({ getPws }) => {
-  const service = getPws.map((pw) => pw.service)
   return (
     <>
       <CellDataContext.Provider value={getPws}>
