@@ -7,6 +7,9 @@ import { CellDataContext } from 'utils/context/celldata'
 export const TableBodyMole: React.FC = () => {
   const cells = useContext(CellDataContext)
 
+  const handleFocusAllSelect = (e: React.FocusEvent<HTMLInputElement>) =>
+    e.target.select()
+
   return (
     <>
       {cells.map((cell) => (
@@ -17,6 +20,7 @@ export const TableBodyMole: React.FC = () => {
           <BodyCell className="table-cell">
             <InputCell
               className="border-none outline-none"
+              onFocus={handleFocusAllSelect}
               size={10}
               value={cell.password}
             />
