@@ -5,7 +5,9 @@ export const HomeTemp: React.FC = () => {
   return (
     <>
       <HeaderOrga />
-      <TableOrga />
+      <main>
+        <TableOrga />
+      </main>
     </>
   )
 }
