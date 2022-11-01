@@ -1,25 +1,10 @@
-import { gql } from '@apollo/client'
-
 import { HomeTemp } from 'components/templates/HomeTemp'
 import { client } from 'utils/apollo-client'
 import { CellDataContext } from 'utils/context/celldata'
+import { getPws } from 'utils/query'
 
 import type { GetServerSideProps, NextPage } from 'next'
-
-const getPws = gql`
-  query Query($userId: Int!) {
-    getPws(userId: $userId) {
-      id
-      userId
-      service
-      email
-      name
-      password
-      twoFactor
-      secret
-    }
-  }
-`
+import type { GetPws } from 'types/pw'
 
 type Props = GetPws
 
@@ -31,23 +16,6 @@ const Home: NextPage<Props> = ({ getPws }) => {
       </CellDataContext.Provider>
     </>
   )
-}
-
-export default Home
-
-type GetPws = {
-  getPws: [
-    {
-      id: number
-      userId: number
-      service: string
-      email: string
-      name: string
-      password: string
-      twoFactor: boolean
-      secret: string
-    }
-  ]
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
@@ -62,3 +30,5 @@ export const getServerSideProps: GetServerSideProps = async () => {
     }
   }
 }
+
+export default Home
