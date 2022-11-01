@@ -7,7 +7,10 @@ type Props = {
 export const BodyCell: React.FC<Props> = ({ text, className, children }) => {
   return (
     <>
-      <td className={className}>{text}{children}</td>
+      <td className={className}>
+        {text}
+        {children}
+      </td>
     </>
   )
 }

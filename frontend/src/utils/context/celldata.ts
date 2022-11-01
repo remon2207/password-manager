@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext } from 'react'
 
 const defaultValue = [
   {
@@ -12,6 +12,5 @@ const defaultValue = [
     secret: ''
   }
 ]
-
 
 export const CellDataContext = createContext(defaultValue)
