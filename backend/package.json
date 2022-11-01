@@ -12,7 +12,7 @@
     "dev:watch": "webpack --watch --config webpack.dev.js & nodemon ./dist/main.js",
     "codegen": "graphql-codegen --config codegen.ts",
     "lint": "eslint ./src",
-    "lint:fix": "eslint --fix",
+    "lint:fix": "eslint --fix ./src",
     "format": "prettier --write ./src"
   },
   "prisma": {
