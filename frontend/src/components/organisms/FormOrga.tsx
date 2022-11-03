@@ -49,9 +49,9 @@ export const FormOrga: React.FC = () => {
           <input type="checkbox" {...register('twoFactor')} />
           <Description htmlFor="Secret">Secret</Description>
           <input type="text" {...register('secret')} />
-          <div className="flex flex-row items-center justify-center">
-            <input type="submit" value="Back" />
-            <input type="submit" value="Send" />
+          <div className="mt-14 flex flex-row items-center justify-center gap-24">
+            <input className="page-transition-btn" type="submit" value="Back" />
+            <input className="page-transition-btn" type="submit" value="Send" />
           </div>
         </div>
       </form>
