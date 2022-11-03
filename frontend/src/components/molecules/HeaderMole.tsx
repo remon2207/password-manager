@@ -8,7 +8,11 @@ export const HeaderMole: React.FC = () => {
         href="/signin"
         navText="Sign out"
       />
-      <Nav className="mx-auto" href="/" navText="Password manager" />
+      <Nav
+        className="mx-auto text-2xl font-bold hover:underline"
+        href="/"
+        navText="Password manager"
+      />
       <Nav
         className="page-transition-btn mr-auto"
         href="/new"
