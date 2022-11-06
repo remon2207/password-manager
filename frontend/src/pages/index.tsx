@@ -1,6 +1,6 @@
 import { HomeTemp } from 'components/templates/HomeTemp'
 import { client } from 'utils/apollo-client'
-import { CellDataContext } from 'utils/context/celldata'
+import { CellDataContext } from 'utils/context/cellData'
 import { getPws } from 'utils/query'
 
 import type { GetServerSideProps, NextPage } from 'next'
