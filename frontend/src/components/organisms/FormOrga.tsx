@@ -1,10 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { yupResolver } from '@hookform/resolvers/yup'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
-import { Description } from 'components/atoms/forms/Description'
+import { InputForm } from 'components/molecules/InputForm'
 
+import type { SubmitHandler } from 'react-hook-form'
 import type { FormInput } from 'types/form'
 
 const schema = yup
@@ -35,20 +36,45 @@ export const FormOrga: React.FC = () => {
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col items-center justify-center">
-          <Description htmlFor="service">
-            Service{errors.service && <span>Please enter a service name</span>}
-          </Description>
-          <input type="text" {...register('service')} />
-          <Description htmlFor="email">Email</Description>
-          <input type="email" {...register('email')} />
-          <Description htmlFor="name">Name</Description>
-          <input type="text" {...register('name')} />
-          <Description htmlFor="password">Password</Description>
-          <input type="text" {...register('password')} />
-          <Description htmlFor="two-factor">Two factor</Description>
-          <input type="checkbox" {...register('twoFactor')} />
-          <Description htmlFor="Secret">Secret</Description>
-          <input type="text" {...register('secret')} />
+          <InputForm
+            error={errors.service?.message}
+            htmlFor="service"
+            labelName="Service*"
+            register={register('service')}
+            required
+            type="text"
+          />
+          <InputForm
+            error={errors.email?.message}
+            htmlFor="email"
+            labelName="Email"
+            register={register('email')}
+            type="email"
+          />
+          <InputForm
+            htmlFor="name"
+            labelName="Name"
+            register={register('name')}
+            type="text"
+          />
+          <InputForm
+            htmlFor="password"
+            labelName="Password"
+            register={register('password')}
+            type="text"
+          />
+          <InputForm
+            htmlFor="two-factor"
+            labelName="Two factor"
+            register={register('twoFactor')}
+            type="checkbox"
+          />
+          <InputForm
+            htmlFor="secret"
+            labelName="Secret"
+            register={register('secret')}
+            type="text"
+          />
           <div className="mt-14 flex flex-row items-center justify-center gap-24">
             <input className="page-transition-btn" type="submit" value="Back" />
             <input className="page-transition-btn" type="submit" value="Send" />
