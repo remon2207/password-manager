@@ -64,7 +64,13 @@ const config = {
     'react/jsx-indent-props': ['error', 2],
     'react/jsx-sort-props': 'warn',
     'react/jsx-props-no-multi-spaces': 'error',
-    'react/jsx-no-useless-fragment': 'off'
+    'react/jsx-no-useless-fragment': 'off',
+    'react/jsx-props-no-spreading': [
+      'error',
+      {
+        html: 'ignore'
+      }
+    ]
   }
 }
 
