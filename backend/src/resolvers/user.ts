@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client'
-import { ApolloError } from 'apollo-server-core'
+import { GraphQLError } from 'graphql'
 import validator from 'validator'
 
 export const getUsers = async () => {
@@ -18,7 +18,8 @@ export const getUser = async (id: number) => {
   })
 
   if (!user) {
-    throw new ApolloError('Account not found', 'NOT_FOUND')
+    // throw new ApolloError('Account not found', 'NOT_FOUND')
+    throw new GraphQLError('Account not found')
   }
 
   return user
@@ -31,11 +32,13 @@ export const addUser = async (name: string, email: string) => {
   const isEmail = validator.isEmail(email)
 
   if (isEmptyName) {
-    throw new ApolloError('Name not found', 'NOT_FOUND')
+    // throw new ApolloError('Name not found', 'NOT_FOUND')
+    throw new GraphQLError('Name not found')
   }
 
   if (isEmptyEmail) {
-    throw new ApolloError('Email not found', 'NOT_FOUND')
+    // throw new ApolloError('Email not found', 'NOT_FOUND')
+    throw new GraphQLError('Email not found')
   }
 
   if (isEmail) {
@@ -47,7 +50,8 @@ export const addUser = async (name: string, email: string) => {
     })
 
     if (isUserExists) {
-      throw new ApolloError('Account is already registed')
+      // throw new ApolloError('Account is already registed')
+      throw new GraphQLError('Account is already registed')
     } else {
       const message = {
         message: 'Deleted account successfully'
@@ -63,7 +67,8 @@ export const addUser = async (name: string, email: string) => {
       return message
     }
   } else {
-    throw new ApolloError('Not email')
+    // throw new ApolloError('Not email')
+    throw new GraphQLError('Not email')
   }
 }
 
@@ -86,7 +91,8 @@ export const deleteUser = async (id: number) => {
   try {
     await prisma.$transaction([deletePws, deleteUser])
   } catch (e) {
-    throw new ApolloError('Account not found', 'NOT_FOUND')
+    // throw new ApolloError('Account not found', 'NOT_FOUND')
+    throw new GraphQLError('Account not found')
   }
 
   return message

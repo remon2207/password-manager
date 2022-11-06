@@ -1,6 +1,4 @@
-import { gql } from 'apollo-server-core'
-
-export const typeDefs = gql`
+export const typeDefs = `#graphql
   type Query {
     getUsers: [User]!
     getUser(id: Int!): User!

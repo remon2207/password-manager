@@ -1,35 +1,36 @@
 import 'dotenv/config'
+
 import http from 'http'
 
-import {
-  ApolloServerPluginDrainHttpServer,
-  ApolloServerPluginLandingPageLocalDefault
-} from 'apollo-server-core'
-import { ApolloServer } from 'apollo-server-express'
+import { ApolloServer, BaseContext } from '@apollo/server'
+import { expressMiddleware } from '@apollo/server/express4'
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer'
+import cors from 'cors'
 import express from 'express'
 
 import { resolvers } from 'resolvers'
 import { typeDefs } from 'schema'
 
-const port = process.env.PORT
+const port = Number(process.env.PORT)
 
-async function startApolloServer() {
-  const app = express()
-  const httpServer = http.createServer(app)
-  const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    csrfPrevention: true,
-    cache: 'bounded',
-    plugins: [
-      ApolloServerPluginDrainHttpServer({ httpServer }),
-      ApolloServerPluginLandingPageLocalDefault({ embed: true })
-    ]
-  })
+const app = express()
+
+const httpServer = http.createServer(app)
+
+const server = new ApolloServer<BaseContext>({
+  typeDefs,
+  resolvers,
+  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })]
+})
+
+const startServer = async () => {
   await server.start()
-  server.applyMiddleware({ app })
-  httpServer.listen(port)
-  console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
+  app.use('/graphql', cors(), express.json(), expressMiddleware(server))
+  httpServer.listen({ port })
 }
 
-startApolloServer().catch((e) => console.error(e))
+// (async () => {
+// startServer()
+// )()
+
+startServer().finally(() => console.log('start'))
