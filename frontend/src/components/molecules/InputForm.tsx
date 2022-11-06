@@ -19,7 +19,13 @@ export const InputForm: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <Description error={error} htmlFor={htmlFor} labelName={labelName} />
+      <Description
+        className="my-2"
+        error={error}
+        errorClassName="absolute right-[610px] rounded-md bg-red-300 py-0.5 px-2 text-white"
+        htmlFor={htmlFor}
+        labelName={labelName}
+      />
       <input type={type} {...register} />
     </>
   )
