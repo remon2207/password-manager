@@ -1,5 +1,5 @@
 type Props = {
-  text?: string | number | boolean
+  text?: string | boolean
   children?: React.ReactNode
   className?: string
 }
