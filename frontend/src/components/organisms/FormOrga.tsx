@@ -1,12 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { useMutation } from '@apollo/client'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
 import { InputForm } from 'components/molecules/InputForm'
+import { FormInput, Message } from 'types/form'
+import { pwRegister } from 'utils/mutation'
 
 import type { SubmitHandler } from 'react-hook-form'
-import type { FormInput } from 'types/form'
 
 const schema = yup
   .object({
@@ -28,8 +30,23 @@ export const FormOrga: React.FC = () => {
     resolver: yupResolver(schema)
   })
 
-  const onSubmit: SubmitHandler<FormInput> = (data: FormInput) => {
+  const [addPw, { data, error }] = useMutation<Message>(pwRegister)
+
+  const onSubmit: SubmitHandler<FormInput> = async (data) => {
     console.log(data)
+    await addPw({
+      variables: {
+        pw: {
+          userId: 1,
+          service: data.service,
+          email: data.email,
+          name: data.name,
+          password: data.password,
+          twoFactor: data.twoFactor,
+          secret: data.secret
+        }
+      }
+    })
   }
 
   return (
@@ -81,6 +98,7 @@ export const FormOrga: React.FC = () => {
           </div>
         </div>
       </form>
+      {data?.message}
     </>
   )
 }

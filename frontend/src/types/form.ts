@@ -7,3 +7,7 @@ export type FormInput = {
   secret: string
 }
 
+
+export type Message = {
+  message: string
+}
