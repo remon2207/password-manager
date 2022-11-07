@@ -22,9 +22,6 @@ export const TableOrga: React.FC = () => {
         <tbody>
           {cells.map((cell) => (
             <tr key={cell.id}>
-              <TableBodyMole text={cell.service} />
-              <TableBodyMole text={cell.email} />
-              <TableBodyMole text={cell.name} />
               <TableBodyMole>
                 <Link href={`/edit?id=${cell.id}`}>
                   <span className="hover:underline">{cell.service}</span>
@@ -40,8 +37,8 @@ export const TableOrga: React.FC = () => {
                   value={cell.password}
                 />
               </TableBodyMole>
-              <TableBodyMole text={cell.twoFactor} />
-              <TableBodyMole text={cell.secret} />
+              <TableBodyMole>{cell.twoFactor ? 'true' : 'false'}</TableBodyMole>
+              <TableBodyMole>{cell.secret}</TableBodyMole>
             </tr>
           ))}
         </tbody>
