@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 
 import { HeaderOrga } from 'components/organisms/HeaderOrga'
 import { TableOrga } from 'components/organisms/TableOrga'
@@ -11,7 +11,7 @@ export const HomeTemp: React.FC = () => {
       <HeaderOrga />
       <main>
         <div className="flex flex-col items-center justify-center">
-          {status && <p className="p-2 bg-green-200 w-full text-center">Created password info successfully</p>}
+          {status && <p className="p-2 bg-green-200 w-full text-center">Updated password info successfully</p>}
           <TableOrga />
         </div>
       </main>
