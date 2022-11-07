@@ -8,8 +8,8 @@ import type { FormInput, Message } from 'types/form'
 
 export const useSubmit = () => {
   const router = useRouter()
-  const [addPw] = useMutation<Message>(pwRegister)
-  const [updatePw] = useMutation<Message>(pwUpdater)
+  const [addPw, { data: addMessage }] = useMutation<Message>(pwRegister)
+  const [updatePw, { data: updateMessage }] = useMutation<Message>(pwUpdater)
 
   const onSubmitCreate: SubmitHandler<FormInput> = async (data) => {
     await addPw({
@@ -45,5 +45,5 @@ export const useSubmit = () => {
     await router.push('/')
   }
 
-  return { onSubmitCreate, onSubmitUpdate }
+  return { onSubmitCreate, onSubmitUpdate, addMessage, updateMessage }
 }

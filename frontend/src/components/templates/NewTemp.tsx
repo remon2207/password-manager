@@ -13,17 +13,19 @@ export const NewTemp: React.FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful }
+    formState: { errors }
   } = useForm<FormInput>({
     resolver: yupResolver(formSchema)
   })
 
-  const { onSubmitCreate } = useSubmit()
+  const { onSubmitCreate, addMessage } = useSubmit()
   const setStatus = useContext(SetStatusContext)
 
   useEffect(() => {
-    setStatus(!isSubmitSuccessful)
-  }, [isSubmitSuccessful, setStatus])
+    if (addMessage) {
+      setStatus(true)
+    }
+  }, [addMessage, setStatus])
 
   return (
     <>
@@ -59,6 +61,7 @@ export const NewTemp: React.FC = () => {
             type="text"
           />
           <FormOrga
+            className="focus:ring-0"
             error={errors.twoFactor?.message}
             htmlFor="two-factor"
             labelName="Two factor"

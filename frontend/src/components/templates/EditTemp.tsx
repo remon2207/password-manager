@@ -16,7 +16,7 @@ export const EditTemp: React.FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful }
+    formState: { errors }
   } = useForm<FormInput>({
     defaultValues: {
       id: pwInfo.id,
@@ -24,13 +24,15 @@ export const EditTemp: React.FC = () => {
     },
     resolver: yupResolver(formSchema)
   })
-  const { onSubmitUpdate } = useSubmit()
+  const { onSubmitUpdate, updateMessage } = useSubmit()
   const setStatus = useContext(SetStatusContext)
   const { onClickDelete } = useClick()
 
   useEffect(() => {
-    setStatus(!isSubmitSuccessful)
-  }, [isSubmitSuccessful, setStatus])
+    if (updateMessage) {
+      setStatus(true)
+    }
+  }, [updateMessage, setStatus])
 
   return (
     <>
