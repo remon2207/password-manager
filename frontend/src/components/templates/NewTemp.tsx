@@ -1,22 +1,30 @@
 import { yupResolver } from '@hookform/resolvers/yup'
+import { useContext, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { FormOrga } from 'components/organisms/FormOrga'
 import { HeaderOrga } from 'components/organisms/HeaderOrga'
 import { useSubmit } from 'hooks/useSubmit'
 import { FormInput } from 'types/form'
+import { SetStatusContext } from 'utils/context/status'
 import { formSchema } from 'utils/schema'
 
 export const NewTemp: React.FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors, isSubmitSuccessful }
   } = useForm<FormInput>({
     resolver: yupResolver(formSchema)
   })
 
   const { onSubmitCreate } = useSubmit()
+  const setStatus = useContext(SetStatusContext)
+
+  useEffect(() => {
+    setStatus(!isSubmitSuccessful)
+  }, [isSubmitSuccessful, setStatus])
+
   return (
     <>
       <HeaderOrga />
