@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 
 import { FormOrga } from 'components/organisms/FormOrga'
 import { HeaderOrga } from 'components/organisms/HeaderOrga'
+import { useClick } from 'hooks/useClick'
 import { useSubmit } from 'hooks/useSubmit'
 import { FormInput } from 'types/form'
 import { PwInfoContext } from 'utils/context/fetchData'
@@ -25,6 +26,7 @@ export const EditTemp: React.FC = () => {
   })
   const { onSubmitUpdate } = useSubmit()
   const setStatus = useContext(SetStatusContext)
+  const { onClickDelete } = useClick()
 
   useEffect(() => {
     setStatus(!isSubmitSuccessful)
@@ -88,6 +90,14 @@ export const EditTemp: React.FC = () => {
             <input className="page-transition-btn" type="submit" value="Send" />
           </div>
         </form>
+        <div className="mt-20 text-center">
+          <input
+            className="page-transition-btn"
+            onClick={() => onClickDelete(pwInfo.id)}
+            type="button"
+            value="Delete"
+          />
+        </div>
       </main>
     </>
   )

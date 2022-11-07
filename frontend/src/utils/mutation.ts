@@ -15,3 +15,11 @@ export const pwUpdater = gql`
     }
   }
 `
+
+export const pwDeleter = gql`
+  mutation Mutation($id: Int!) {
+    pwDeleter(id: $id) {
+      message
+    }
+  }
+`
