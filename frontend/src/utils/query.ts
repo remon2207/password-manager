@@ -14,3 +14,18 @@ export const getPws = gql`
     }
   }
 `
+
+export const getPw = gql`
+  query Query($id: Int!) {
+    getPw(id: $id) {
+      id
+      userId
+      service
+      email
+      name
+      password
+      twoFactor
+      secret
+    }
+  }
+`
