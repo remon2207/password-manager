@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { FormOrga } from 'components/organisms/FormOrga'
@@ -7,6 +7,7 @@ import { HeaderOrga } from 'components/organisms/HeaderOrga'
 import { useSubmit } from 'hooks/useSubmit'
 import { FormInput } from 'types/form'
 import { PwInfoContext } from 'utils/context/fetchData'
+import { SetStatusContext } from 'utils/context/status'
 import { formSchema } from 'utils/schema'
 
 export const EditTemp: React.FC = () => {
@@ -14,7 +15,7 @@ export const EditTemp: React.FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors, isSubmitSuccessful }
   } = useForm<FormInput>({
     defaultValues: {
       id: pwInfo.id,
@@ -23,6 +24,11 @@ export const EditTemp: React.FC = () => {
     resolver: yupResolver(formSchema)
   })
   const { onSubmitUpdate } = useSubmit()
+  const setStatus = useContext(SetStatusContext)
+
+  useEffect(() => {
+    setStatus(!isSubmitSuccessful)
+  }, [isSubmitSuccessful, setStatus])
 
   return (
     <>
