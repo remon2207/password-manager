@@ -1,4 +1,6 @@
 export type FormInput = {
+  id: number
+  userId: number
   service: string
   email: string
   name: string
@@ -6,7 +8,6 @@ export type FormInput = {
   twoFactor: boolean
   secret: string
 }
-
 
 export type Message = {
   message: string

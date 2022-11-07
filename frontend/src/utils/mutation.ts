@@ -7,3 +7,11 @@ export const pwRegister = gql`
     }
   }
 `
+
+export const pwUpdater = gql`
+  mutation Mutation($pw: UpdatePwInfoInput!) {
+    pwUpdater(pw: $pw) {
+      message
+    }
+  }
+`

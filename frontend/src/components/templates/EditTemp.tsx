@@ -1,36 +1,34 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { ComponentPropsWithoutRef, useContext } from 'react'
+import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { FormOrga } from 'components/organisms/FormOrga'
 import { HeaderOrga } from 'components/organisms/HeaderOrga'
 import { useSubmit } from 'hooks/useSubmit'
 import { FormInput } from 'types/form'
-import { GetPw } from 'types/pw'
 import { PwInfoContext } from 'utils/context/fetchData'
 import { formSchema } from 'utils/schema'
 
-type Props = {
-  defaultValue: string
-}
-
-export const EditTemp: React.FC<Props> = ({ defaultValue }) => {
+export const EditTemp: React.FC = () => {
+  const pwInfo = useContext(PwInfoContext)
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm<FormInput>({
+    defaultValues: {
+      id: pwInfo.id,
+      userId: pwInfo.userId
+    },
     resolver: yupResolver(formSchema)
   })
-  const [onSubmit] = useSubmit()
-  const pwInfo = useContext(PwInfoContext)
-  console.log(pwInfo)
+  const { onSubmitUpdate } = useSubmit()
 
   return (
     <>
       <HeaderOrga />
       <main>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmitUpdate)}>
           <FormOrga
             defaultValue={pwInfo.service}
             error={errors.service?.message}
@@ -79,6 +77,10 @@ export const EditTemp: React.FC<Props> = ({ defaultValue }) => {
             register={register('secret')}
             type="text"
           />
+          <div className="mt-14 flex flex-row items-center justify-center gap-24">
+            <input className="page-transition-btn" type="submit" value="Back" />
+            <input className="page-transition-btn" type="submit" value="Send" />
+          </div>
         </form>
       </main>
     </>

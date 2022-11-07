@@ -16,12 +16,12 @@ export const NewTemp: React.FC = () => {
     resolver: yupResolver(formSchema)
   })
 
-  const [onSubmit] = useSubmit()
+  const { onSubmitCreate } = useSubmit()
   return (
     <>
       <HeaderOrga />
       <main>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmitCreate)}>
           <FormOrga
             error={errors.service?.message}
             htmlFor="service"
