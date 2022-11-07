@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useContext } from 'react'
 
 import { InputCell } from 'components/atoms/tables/InputCell'
@@ -24,6 +25,13 @@ export const TableOrga: React.FC = () => {
               <TableBodyMole text={cell.service} />
               <TableBodyMole text={cell.email} />
               <TableBodyMole text={cell.name} />
+              <TableBodyMole>
+                <Link href={`/edit?id=${cell.id}`}>
+                  <span className="hover:underline">{cell.service}</span>
+                </Link>
+              </TableBodyMole>
+              <TableBodyMole>{cell.email}</TableBodyMole>
+              <TableBodyMole>{cell.name}</TableBodyMole>
               <TableBodyMole>
                 <InputCell
                   className="focus:outline-none"
