@@ -15,7 +15,9 @@ export const InputForm: React.FC<Props> = ({
   labelName,
   type,
   register,
-  error
+  error,
+  defaultValue,
+  checked
 }) => {
   return (
     <>
@@ -26,7 +28,12 @@ export const InputForm: React.FC<Props> = ({
         htmlFor={htmlFor}
         labelName={labelName}
       />
-      <input type={type} {...register} />
+      <input
+        type={type}
+        {...register}
+        checked={checked}
+        defaultValue={defaultValue}
+      />
     </>
   )
 }
