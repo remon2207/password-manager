@@ -1,5 +1,7 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client'
 
+import { typeDefs } from './schema'
+
 const cache = new InMemoryCache()
 
 const uri =
@@ -9,5 +11,6 @@ const uri =
 
 export const client = new ApolloClient({
   cache,
-  uri
+  uri,
+  typeDefs
 })
