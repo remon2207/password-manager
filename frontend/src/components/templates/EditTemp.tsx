@@ -1,24 +1,40 @@
-import { useContext } from 'react'
-
 import { FormOrga } from 'components/organisms/FormOrga'
 import { HeaderOrga } from 'components/organisms/HeaderOrga'
-import { PwInfoContext } from 'utils/context/fetchData'
 
-export const EditTemp: React.FC = () => {
-  const pwInfo = useContext(PwInfoContext)
+type Props = {
+  defaultChecked: boolean
+  serviceDefault: string
+  emailDefault: string
+  nameDefault: string
+  passwordDefault: string
+  secretDefault: string
+  pwId?: number
+  userId?: number
+}
+
+export const EditTemp: React.FC<Props> = ({
+  defaultChecked,
+  serviceDefault,
+  emailDefault,
+  nameDefault,
+  passwordDefault,
+  secretDefault,
+  pwId,
+  userId
+}) => {
   return (
     <>
       <HeaderOrga />
       <main>
         <FormOrga
-          defaultChecked={pwInfo.twoFactor}
-          emailDefault={pwInfo.email}
-          nameDefault={pwInfo.name}
-          passwordDefault={pwInfo.password}
-          pwId={pwInfo.id}
-          secretDefault={pwInfo.secret}
-          serviceDefault={pwInfo.service}
-          userId={pwInfo.userId}
+          defaultChecked={defaultChecked}
+          emailDefault={emailDefault}
+          nameDefault={nameDefault}
+          passwordDefault={passwordDefault}
+          pwId={pwId}
+          secretDefault={secretDefault}
+          serviceDefault={serviceDefault}
+          userId={userId}
         />
       </main>
     </>

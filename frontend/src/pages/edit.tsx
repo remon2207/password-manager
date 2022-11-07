@@ -1,3 +1,5 @@
+import { useContext, useEffect } from 'react'
+
 import { EditTemp } from 'components/templates/EditTemp'
 import { client } from 'utils/apollo-client'
 import { PwInfoContext } from 'utils/context/fetchData'
@@ -12,6 +14,7 @@ type Props = GetPw
 const Edit: NextPage<Props> = ({ getPw }) => {
   const setStatus = useContext(SetStatusContext)
   // const pwInfo = useContext(PwInfoContext)
+
   useEffect(() => {
     setStatus('')
   }, [setStatus])
@@ -19,7 +22,16 @@ const Edit: NextPage<Props> = ({ getPw }) => {
   return (
     <>
       <PwInfoContext.Provider value={getPw}>
-        <EditTemp />
+        <EditTemp
+          defaultChecked={getPw.twoFactor}
+          emailDefault={getPw.email}
+          nameDefault={getPw.name}
+          passwordDefault={getPw.password}
+          pwId={getPw.id}
+          secretDefault={getPw.secret}
+          serviceDefault={getPw.service}
+          userId={getPw.userId}
+        />
       </PwInfoContext.Provider>
     </>
   )
