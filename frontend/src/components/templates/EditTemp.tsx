@@ -70,7 +70,8 @@ export const EditTemp: React.FC = () => {
             type="text"
           />
           <FormOrga
-            checked={pwInfo.twoFactor}
+            className="focus:ring-0"
+            defaultChecked={pwInfo.twoFactor}
             error={errors.service?.message}
             htmlFor="two-factor"
             labelName="Two factor"

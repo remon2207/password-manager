@@ -17,13 +17,17 @@ export const FormOrga: React.FC<Props> = ({
   type,
   error,
   defaultValue,
-  checked
+  checked,
+  className,
+  defaultChecked
 }) => {
   return (
     <>
       <div className="flex flex-col items-center justify-center">
         <InputForm
           checked={checked}
+          className={className}
+          defaultChecked={defaultChecked}
           defaultValue={defaultValue}
           error={error}
           htmlFor={htmlFor}

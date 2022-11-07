@@ -17,7 +17,9 @@ export const InputForm: React.FC<Props> = ({
   register,
   error,
   defaultValue,
-  checked
+  checked,
+  className,
+  defaultChecked
 }) => {
   return (
     <>
@@ -32,6 +34,8 @@ export const InputForm: React.FC<Props> = ({
         type={type}
         {...register}
         checked={checked}
+        className={className}
+        defaultChecked={defaultChecked}
         defaultValue={defaultValue}
       />
     </>
