@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useMutation } from '@apollo/client'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
@@ -22,6 +23,7 @@ const schema = yup
   .required()
 
 export const FormOrga: React.FC = () => {
+  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -30,10 +32,9 @@ export const FormOrga: React.FC = () => {
     resolver: yupResolver(schema)
   })
 
-  const [addPw, { data, error }] = useMutation<Message>(pwRegister)
+  const [addPw] = useMutation<Message>(pwRegister)
 
   const onSubmit: SubmitHandler<FormInput> = async (data) => {
-    console.log(data)
     await addPw({
       variables: {
         pw: {
@@ -47,6 +48,7 @@ export const FormOrga: React.FC = () => {
         }
       }
     })
+    await router.push('/')
   }
 
   return (
@@ -98,7 +100,6 @@ export const FormOrga: React.FC = () => {
           </div>
         </div>
       </form>
-      {data?.message}
     </>
   )
 }
