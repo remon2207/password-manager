@@ -7,9 +7,7 @@ type Props = {
 export const TableBodyMole: React.FC<Props> = ({ children }) => {
   return (
     <>
-      <BodyCell className="table-cell">
-        {children}
-      </BodyCell>
+      <BodyCell className="table-cell">{children}</BodyCell>
     </>
   )
 }

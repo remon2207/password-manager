@@ -6,9 +6,7 @@ type Props = {
 export const BodyCell: React.FC<Props> = ({ className, children }) => {
   return (
     <>
-      <td className={className}>
-        {children}
-      </td>
+      <td className={className}>{children}</td>
     </>
   )
 }
