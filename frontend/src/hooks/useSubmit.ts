@@ -11,39 +11,40 @@ export const useSubmit = () => {
   const [addPw, { data: addMessage }] = useMutation<Message>(pwRegister)
   const [updatePw, { data: updateMessage }] = useMutation<Message>(pwUpdater)
 
-  const onSubmitCreate: SubmitHandler<FormInput> = async (data) => {
-    await addPw({
-      variables: {
-        pw: {
-          userId: 1,
-          service: data.service,
-          email: data.email,
-          name: data.name,
-          password: data.password,
-          twoFactor: data.twoFactor,
-          secret: data.secret
+  const onSubmit: SubmitHandler<FormInput> = async (data) => {
+    if (router.pathname === '/new') {
+      await addPw({
+        variables: {
+          pw: {
+            userId: 1,
+            service: data.service,
+            email: data.email,
+            name: data.name,
+            password: data.password,
+            twoFactor: data.twoFactor,
+            secret: data.secret
+          }
         }
-      }
-    })
-    await router.push('/')
+      })
+      await router.push('/')
+    }
+    if (router.pathname === '/edit') {
+      await updatePw({
+        variables: {
+          pw: {
+            id: data.id,
+            service: data.service,
+            email: data.email,
+            name: data.name,
+            password: data.password,
+            twoFactor: data.twoFactor,
+            secret: data.secret
+          }
+        }
+      })
+      await router.push('/')
+    }
   }
 
-  const onSubmitUpdate: SubmitHandler<FormInput> = async (data) => {
-    await updatePw({
-      variables: {
-        pw: {
-          id: data.id,
-          service: data.service,
-          email: data.email,
-          name: data.name,
-          password: data.password,
-          twoFactor: data.twoFactor,
-          secret: data.secret
-        }
-      }
-    })
-    await router.push('/')
-  }
-
-  return { onSubmitCreate, onSubmitUpdate, addMessage, updateMessage }
+  return { addMessage, updateMessage, onSubmit }
 }

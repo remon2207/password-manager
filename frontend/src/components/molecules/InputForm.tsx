@@ -26,7 +26,7 @@ export const InputForm: React.FC<Props> = ({
       <Description
         className="my-2"
         error={error}
-        errorClassName="absolute right-[610px] rounded-md bg-red-300 py-0.5 px-2 text-white"
+        errorClassName="absolute right-[570px] rounded-md bg-red-300 py-0.5 px-2 text-white"
         htmlFor={htmlFor}
         labelName={labelName}
       />
