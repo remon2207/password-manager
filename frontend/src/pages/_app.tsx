@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import '../styles/globals.css'
-
 import { ApolloProvider } from '@apollo/client'
 
 import { client } from 'utils/apollo-client'
