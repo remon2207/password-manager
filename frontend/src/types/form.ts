@@ -10,5 +10,10 @@ export type FormInput = {
 }
 
 export type Message = {
-  message: string
+  pwRegister: {
+    message: string
+  }
+  pwUpdater: {
+    message: string
+  }
 }

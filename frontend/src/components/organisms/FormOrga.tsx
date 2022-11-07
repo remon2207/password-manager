@@ -1,10 +1,11 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { ComponentPropsWithoutRef } from 'react'
+import { ComponentPropsWithoutRef, useContext, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { InputForm } from 'components/molecules/InputForm'
 import { useSubmit } from 'hooks/useSubmit'
 import { FormInput } from 'types/form'
+import { SetStatusContext } from 'utils/context/status'
 import { formSchema } from 'utils/schema'
 
 type Props = ComponentPropsWithoutRef<'input'> & {
@@ -13,8 +14,8 @@ type Props = ComponentPropsWithoutRef<'input'> & {
   nameDefault: string
   passwordDefault: string
   secretDefault: string
-  pwId: number
-  userId: number
+  pwId?: number
+  userId?: number
 }
 
 export const FormOrga: React.FC<Props> = ({
@@ -39,7 +40,20 @@ export const FormOrga: React.FC<Props> = ({
     },
     resolver: yupResolver(formSchema)
   })
-  const { onSubmit } = useSubmit()
+  const { onSubmit, addMessage, updateMessage } = useSubmit()
+  const setStatus = useContext(SetStatusContext)
+
+  useEffect(() => {
+    if (addMessage && !updateMessage) {
+      setStatus(addMessage.pwRegister.message)
+    }
+  }, [addMessage, updateMessage, setStatus])
+
+  useEffect(() => {
+    if (updateMessage && !addMessage) {
+      setStatus(updateMessage.pwUpdater.message)
+    }
+  }, [addMessage, updateMessage, setStatus])
 
   return (
     <>

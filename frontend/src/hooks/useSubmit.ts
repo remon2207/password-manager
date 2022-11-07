@@ -46,5 +46,5 @@ export const useSubmit = () => {
     }
   }
 
-  return { addMessage, updateMessage, onSubmit }
+  return { onSubmit, addMessage, updateMessage }
 }

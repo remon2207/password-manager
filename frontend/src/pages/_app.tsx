@@ -9,7 +9,7 @@ import { SetStatusContext, StatusContext } from 'utils/context/status'
 import type { AppProps } from 'next/app'
 
 const App = ({ Component, pageProps }: AppProps) => {
-  const [status, setStatus] = useState(false)
+  const [status, setStatus] = useState('')
 
   return (
     <>

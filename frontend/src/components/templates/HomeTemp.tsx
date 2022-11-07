@@ -16,7 +16,7 @@ export const HomeTemp: React.FC = () => {
           {status && (
             <Status
               className="w-full bg-green-200 p-2 text-center"
-              statusMessage="Updated password info successfully"
+              statusMessage={status}
             />
           )}
           <TableOrga />

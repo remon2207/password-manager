@@ -1,3 +1,3 @@
-export type StatusState = boolean
+export type StatusState = string
 
-export type SetStatusState = React.Dispatch<React.SetStateAction<boolean>>
+export type SetStatusState = React.Dispatch<React.SetStateAction<string>>
