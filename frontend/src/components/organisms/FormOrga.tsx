@@ -3,24 +3,10 @@ import { useMutation } from '@apollo/client'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
-import * as yup from 'yup'
 
 import { InputForm } from 'components/molecules/InputForm'
-import { FormInput, Message } from 'types/form'
 import { pwRegister } from 'utils/mutation'
-
-import type { SubmitHandler } from 'react-hook-form'
-
-const schema = yup
-  .object({
-    service: yup.string().required(),
-    email: yup.string().email(),
-    name: yup.string(),
-    password: yup.string(),
-    twoFactor: yup.boolean(),
-    secret: yup.string()
-  })
-  .required()
+import { formSchema } from 'utils/schema'
 
 export const FormOrga: React.FC = () => {
   const router = useRouter()
@@ -29,7 +15,7 @@ export const FormOrga: React.FC = () => {
     handleSubmit,
     formState: { errors }
   } = useForm<FormInput>({
-    resolver: yupResolver(schema)
+    resolver: yupResolver(formSchema)
   })
 
   const [addPw] = useMutation<Message>(pwRegister)
