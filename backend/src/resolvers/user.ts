@@ -2,15 +2,15 @@ import { PrismaClient } from '@prisma/client'
 import { GraphQLError } from 'graphql'
 import validator from 'validator'
 
+const prisma = new PrismaClient()
+
 export const getUsers = async () => {
-  const prisma = new PrismaClient()
   const users = await prisma.user.findMany()
 
   return users
 }
 
 export const getUser = async (id: number) => {
-  const prisma = new PrismaClient()
   const user = await prisma.user.findUnique({
     where: {
       id
@@ -26,7 +26,6 @@ export const getUser = async (id: number) => {
 }
 
 export const addUser = async (name: string, email: string) => {
-  const prisma = new PrismaClient()
   const isEmptyName = validator.isEmpty(name, { ignore_whitespace: true })
   const isEmptyEmail = validator.isEmpty(email, { ignore_whitespace: true })
   const isEmail = validator.isEmail(email)
@@ -73,7 +72,6 @@ export const addUser = async (name: string, email: string) => {
 }
 
 export const deleteUser = async (id: number) => {
-  const prisma = new PrismaClient()
   const message = {
     message: 'Deleted account successfully'
   }

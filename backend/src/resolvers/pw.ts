@@ -6,8 +6,9 @@ import validator from 'validator'
 
 import type { Pw } from 'types/pw'
 
+const prisma = new PrismaClient()
+
 export const getPws = async (userId: number) => {
-  const prisma = new PrismaClient()
   const pws = await prisma.password.findMany({
     where: {
       userId
@@ -18,7 +19,6 @@ export const getPws = async (userId: number) => {
 }
 
 export const getPw = async (id: number) => {
-  const prisma = new PrismaClient()
   const pw = await prisma.password.findFirst({
     where: {
       id
@@ -42,7 +42,6 @@ export const addPw: Pw = async (
   twoFactor,
   secret
 ) => {
-  const prisma = new PrismaClient()
   const isEmptyService = validator.isEmpty(service, { ignore_whitespace: true })
   const isEmptyEmail = validator.isEmpty(email, { ignore_whitespace: true })
   const isEmptyPw = validator.isEmpty(password, { ignore_whitespace: true })
@@ -88,7 +87,7 @@ export const addPw: Pw = async (
     return createPwInfo(hashPw)
   }
   // throw new UserInputError('Not email')
-    throw new GraphQLError('Not email')
+  throw new GraphQLError('Not email')
 }
 
 export const pwUpdate: Pw = async (
@@ -100,7 +99,6 @@ export const pwUpdate: Pw = async (
   twoFactor,
   secret
 ) => {
-  const prisma = new PrismaClient()
   const isEmptyService = validator.isEmpty(service, { ignore_whitespace: true })
   const isEmptyEmail = validator.isEmpty(email, { ignore_whitespace: true })
   const isEmail = validator.isEmail(email)
@@ -136,7 +134,6 @@ export const pwUpdate: Pw = async (
 }
 
 export const deletePw = async (id: number) => {
-  const prisma = new PrismaClient()
   try {
     const message = {
       message: 'Deleted password info successfully'
