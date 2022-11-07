@@ -21,7 +21,8 @@ const Home: NextPage<Props> = ({ getPws }) => {
 export const getServerSideProps: GetServerSideProps = async () => {
   const { data } = await client.query<GetPws>({
     query: getPws,
-    variables: { userId: 1 }
+    variables: { userId: 1 },
+    fetchPolicy: 'network-only'
   })
 
   return {
