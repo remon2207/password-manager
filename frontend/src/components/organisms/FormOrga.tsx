@@ -1,15 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useMutation } from '@apollo/client'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 
 import { InputForm } from 'components/molecules/InputForm'
-import { pwRegister } from 'utils/mutation'
+import { useSubmit } from 'hooks/useSubmit'
+import { FormInput } from 'types/form'
 import { formSchema } from 'utils/schema'
 
 export const FormOrga: React.FC = () => {
-  const router = useRouter()
   const {
     register,
     handleSubmit,
@@ -18,24 +16,7 @@ export const FormOrga: React.FC = () => {
     resolver: yupResolver(formSchema)
   })
 
-  const [addPw] = useMutation<Message>(pwRegister)
-
-  const onSubmit: SubmitHandler<FormInput> = async (data) => {
-    await addPw({
-      variables: {
-        pw: {
-          userId: 1,
-          service: data.service,
-          email: data.email,
-          name: data.name,
-          password: data.password,
-          twoFactor: data.twoFactor,
-          secret: data.secret
-        }
-      }
-    })
-    await router.push('/')
-  }
+  const [onSubmit] = useSubmit()
 
   return (
     <>
