@@ -92,6 +92,7 @@ export const FormOrga: React.FC<Props> = ({
             type="text"
           />
           <InputForm
+            className="focus:ring-0"
             defaultChecked={defaultChecked}
             defaultValue={defaultValue}
             error={errors.twoFactor?.message}
