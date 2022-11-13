@@ -29,14 +29,16 @@ export const checkSession = async (context: GetServerSidePropsContext) => {
       variables: {
         name,
         email
-      }
+      },
+      fetchPolicy: 'network-only'
     })
     const userId = user.getUserId.id
     const { data } = await client.query<GetPws>({
       query: getPws,
       variables: {
         userId
-      }
+      },
+      fetchPolicy: 'network-only'
     })
 
     return {
@@ -58,14 +60,16 @@ export const checkSession = async (context: GetServerSidePropsContext) => {
       variables: {
         name,
         email
-      }
+      },
+      fetchPolicy: 'network-only'
     })
     const userId = user.getUserId.id
     const { data } = await client.query<GetPws>({
       query: getPws,
       variables: {
         userId
-      }
+      },
+      fetchPolicy: 'network-only'
     })
 
     return {
