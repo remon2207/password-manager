@@ -23,3 +23,11 @@ export const pwDeleter = gql`
     }
   }
 `
+
+export const userRegister = gql`
+  mutation Mutation($user: NewUserInput!) {
+    userRegister(user: $user) {
+      message
+    }
+  }
+`

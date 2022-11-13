@@ -15,34 +15,38 @@ export const TableOrga: React.FC = () => {
 
   return (
     <>
-      <table className="mx-auto w-full table-auto lg:w-full xl:w-1/2">
-        <thead>
-          <TableHeaderMole />
-        </thead>
-        <tbody>
-          {cells.map((cell) => (
-            <tr key={cell.id}>
-              <TableBodyMole>
-                <Link href={`/edit?id=${cell.id}`}>
-                  <span className="hover:underline">{cell.service}</span>
-                </Link>
-              </TableBodyMole>
-              <TableBodyMole>{cell.email}</TableBodyMole>
-              <TableBodyMole>{cell.name}</TableBodyMole>
-              <TableBodyMole>
-                <InputCell
-                  className="focus:outline-none"
-                  onFocus={handleFocus}
-                  size={10}
-                  value={cell.password}
-                />
-              </TableBodyMole>
-              <TableBodyMole>{cell.twoFactor ? 'true' : 'false'}</TableBodyMole>
-              <TableBodyMole>{cell.secret}</TableBodyMole>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {cells.length > 0 && (
+        <table className="mx-auto w-full table-auto lg:w-full xl:w-1/2">
+          <thead>
+            <TableHeaderMole />
+          </thead>
+          <tbody>
+            {cells.map((cell) => (
+              <tr key={cell.id}>
+                <TableBodyMole>
+                  <Link href={`/edit?id=${cell.id}`}>
+                    <span className="hover:underline">{cell.service}</span>
+                  </Link>
+                </TableBodyMole>
+                <TableBodyMole>{cell.email}</TableBodyMole>
+                <TableBodyMole>{cell.name}</TableBodyMole>
+                <TableBodyMole>
+                  <InputCell
+                    className="focus:outline-none"
+                    onFocus={handleFocus}
+                    size={10}
+                    value={cell.password}
+                  />
+                </TableBodyMole>
+                <TableBodyMole>
+                  {cell.twoFactor ? 'true' : 'false'}
+                </TableBodyMole>
+                <TableBodyMole>{cell.secret}</TableBodyMole>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </>
   )
 }

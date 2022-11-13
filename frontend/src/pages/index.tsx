@@ -1,12 +1,6 @@
-import { unstable_getServerSession } from 'next-auth'
-
 import { HomeTemp } from 'components/templates/HomeTemp'
-import { GetUserId } from 'types/user'
-import { client } from 'utils/apollo-client'
+import { checkSession } from 'utils/checkSession'
 import { CellDataContext } from 'utils/context/cellData'
-import { getPws, getUserId } from 'utils/query'
-
-import { authOptions } from './api/auth/[...nextauth]'
 
 import type { GetServerSideProps, NextPage } from 'next'
 import type { GetPws } from 'types/pw'
@@ -23,8 +17,8 @@ const Home: NextPage<Props> = ({ getPws }) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  const session = await unstable_getServerSession(req, res, authOptions)
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await checkSession(context)
 
   if (!session) {
     return {
@@ -34,25 +28,11 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
       }
     }
   }
-
-  const sessionName = String(session.user?.name)
-  const sessionEmail = String(session.user?.email)
-
-  const { data: getSessionId } = await client.query<GetUserId>({
-    query: getUserId,
-    variables: { name: sessionName, email: sessionEmail }
-  })
-
-  const { data } = await client.query<GetPws>({
-    query: getPws,
-    variables: { userId: getSessionId.getUserId.id },
-    fetchPolicy: 'network-only'
-  })
+  const getPws = session.data
 
   return {
     props: {
-      getPws: data.getPws,
-      session
+      getPws
     }
   }
 }

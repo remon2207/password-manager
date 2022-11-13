@@ -1,13 +1,17 @@
+import { signOut } from 'next-auth/react'
+
 import { Nav } from 'components/atoms/headers/Nav'
 
 export const HeaderMole: React.FC = () => {
   return (
     <>
-      <Nav
+      <button
         className="page-transition-btn ml-auto"
-        href="/signin"
-        navText="Sign out"
-      />
+        onClick={() => signOut({ callbackUrl: '/signin' })}
+        type="button"
+      >
+        Sign out
+      </button>
       <Nav
         className="mx-auto text-2xl font-bold hover:underline"
         href="/"

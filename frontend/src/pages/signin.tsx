@@ -18,7 +18,10 @@ const SignIn: NextPage = () => {
   return (
     <>
       Not signed in <br />
-      <button onClick={() => signIn()} type="button">
+      <button
+        onClick={() => signIn('github', { callbackUrl: '/' })}
+        type="button"
+      >
         Sign in
       </button>
     </>
