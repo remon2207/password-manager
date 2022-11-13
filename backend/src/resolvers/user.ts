@@ -67,7 +67,7 @@ export const addUser = async (name: string, email: string) => {
       throw new GraphQLError('Account is already registed')
     } else {
       const message = {
-        message: 'Deleted account successfully'
+        message: 'Created account successfully'
       }
 
       await prisma.user.create({
