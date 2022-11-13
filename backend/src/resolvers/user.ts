@@ -25,11 +25,12 @@ export const getUser = async (id: number) => {
   return user
 }
 
-export const getUserId = async (id: number) => {
+export const getUserId = async (name: string, email: string) => {
   try {
-    const userId = await prisma.user.findUniqueOrThrow({
+    const userId = await prisma.user.findFirstOrThrow({
       where: {
-        id
+        name,
+        email
       }
     })
     return userId
