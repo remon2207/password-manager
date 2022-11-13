@@ -31,15 +31,17 @@ export const checkSession = async (context: GetServerSidePropsContext) => {
         email
       }
     })
+    const userId = user.getUserId.id
     const { data } = await client.query<GetPws>({
       query: getPws,
       variables: {
-        userId: user.getUserId.id
+        userId
       }
     })
 
     return {
-      data
+      data,
+      userId
     }
   } catch (e) {
     await client.mutate({
@@ -51,22 +53,24 @@ export const checkSession = async (context: GetServerSidePropsContext) => {
         }
       }
     })
-    const { data: sessionUserId } = await client.query<GetUserId>({
+    const { data: user } = await client.query<GetUserId>({
       query: getUserId,
       variables: {
         name,
         email
       }
     })
+    const userId = user.getUserId.id
     const { data } = await client.query<GetPws>({
       query: getPws,
       variables: {
-        userId: sessionUserId.getUserId.id
+        userId
       }
     })
 
     return {
-      data
+      data,
+      userId
     }
   }
 }
