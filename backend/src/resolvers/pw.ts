@@ -12,6 +12,9 @@ export const getPws = async (userId: number) => {
   const pws = await prisma.password.findMany({
     where: {
       userId
+    },
+    orderBy: {
+      service: 'asc'
     }
   })
 
