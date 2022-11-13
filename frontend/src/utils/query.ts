@@ -29,3 +29,11 @@ export const getPw = gql`
     }
   }
 `
+
+export const getUserId = gql`
+  query Query($name: String!, $email: String!) {
+    getUserId(name: $name, email: $email) {
+      id
+    }
+  }
+`

@@ -1,9 +1,10 @@
 import { unstable_getServerSession } from 'next-auth'
 
 import { HomeTemp } from 'components/templates/HomeTemp'
+import { GetUserId } from 'types/user'
 import { client } from 'utils/apollo-client'
 import { CellDataContext } from 'utils/context/cellData'
-import { getPws } from 'utils/query'
+import { getPws, getUserId } from 'utils/query'
 
 import { authOptions } from './api/auth/[...nextauth]'
 
@@ -37,9 +38,14 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const sessionName = String(session.user?.name)
   const sessionEmail = String(session.user?.email)
 
+  const { data: getSessionId } = await client.query<GetUserId>({
+    query: getUserId,
+    variables: { name: sessionName, email: sessionEmail }
+  })
+
   const { data } = await client.query<GetPws>({
     query: getPws,
-    variables: { userId: 1 },
+    variables: { userId: getSessionId.getUserId.id },
     fetchPolicy: 'network-only'
   })
 
