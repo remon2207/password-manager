@@ -2,6 +2,7 @@ export const typeDefs = `#graphql
   type Query {
     getUsers: [User]!
     getUser(id: Int!): User!
+    getUserId(id: Int!): User!
     getPws(userId: Int!): [PwInfo]!
     getPw(id: Int!): PwInfo!
   }

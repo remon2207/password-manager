@@ -85,6 +85,7 @@ export type Query = {
   getPw: PwInfo;
   getPws: Array<Maybe<PwInfo>>;
   getUser: User;
+  getUserId: User;
   getUsers: Array<Maybe<User>>;
 };
 
@@ -100,6 +101,11 @@ export type QueryGetPwsArgs = {
 
 
 export type QueryGetUserArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type QueryGetUserIdArgs = {
   id: Scalars['Int'];
 };
 
@@ -246,6 +252,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
   getPw?: Resolver<ResolversTypes['PwInfo'], ParentType, ContextType, RequireFields<QueryGetPwArgs, 'id'>>;
   getPws?: Resolver<Array<Maybe<ResolversTypes['PwInfo']>>, ParentType, ContextType, RequireFields<QueryGetPwsArgs, 'userId'>>;
   getUser?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<QueryGetUserArgs, 'id'>>;
+  getUserId?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<QueryGetUserIdArgs, 'id'>>;
   getUsers?: Resolver<Array<Maybe<ResolversTypes['User']>>, ParentType, ContextType>;
 };
 

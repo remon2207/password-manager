@@ -25,6 +25,19 @@ export const getUser = async (id: number) => {
   return user
 }
 
+export const getUserId = async (id: number) => {
+  try {
+    const userId = await prisma.user.findUniqueOrThrow({
+      where: {
+        id
+      }
+    })
+    return userId
+  } catch (e) {
+    throw new GraphQLError('Account not found')
+  }
+}
+
 export const addUser = async (name: string, email: string) => {
   const isEmptyName = validator.isEmpty(name, { ignore_whitespace: true })
   const isEmptyEmail = validator.isEmpty(email, { ignore_whitespace: true })
