@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "format": "prettier --write ./src"
+    "format": "prettier --write ./src",
+    "lint:format": "npm run lint:fix && npm run format"
   },
   "dependencies": {
     "@apollo/client": "^3.7.1",
