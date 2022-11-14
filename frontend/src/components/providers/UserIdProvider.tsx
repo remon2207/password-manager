@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { SetUserIdContext, UserIdContext } from 'utils/context/user'
+import { SetUserIdContext, UserIdContext } from 'utils'
 
 type Props = {
   children: React.ReactNode

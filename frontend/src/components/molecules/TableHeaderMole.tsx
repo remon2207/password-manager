@@ -1,4 +1,4 @@
-import { HeaderCell } from 'components/atoms/tables/HeaderCell'
+import { HeaderCell } from 'components/atoms'
 
 export const TableHeaderMole: React.FC = () => {
   const cellsText = [

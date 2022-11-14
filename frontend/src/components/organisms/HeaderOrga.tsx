@@ -1,4 +1,4 @@
-import { HeaderMole } from 'components/molecules/HeaderMole'
+import { HeaderMole } from 'components/molecules'
 
 export const HeaderOrga: React.FC = () => {
   return (

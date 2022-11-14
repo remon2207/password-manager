@@ -1,4 +1,4 @@
-import { BodyCell } from 'components/atoms/tables/BodyCell'
+import { BodyCell } from 'components/atoms'
 
 type Props = {
   children?: React.ReactNode

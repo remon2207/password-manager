@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react'
 
-import { NewTemp } from 'components/templates/NewTemp'
-import { SetStatusContext } from 'utils/context/status'
+import { NewTemp } from 'components/templates'
+import { SetStatusContext } from 'utils'
 
 import type { NextPage } from 'next'
 

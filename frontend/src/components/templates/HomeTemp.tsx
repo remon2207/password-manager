@@ -1,9 +1,8 @@
 import { useContext } from 'react'
 
-import { Status } from 'components/atoms/forms/Status'
-import { HeaderOrga } from 'components/organisms/HeaderOrga'
-import { TableOrga } from 'components/organisms/TableOrga'
-import { StatusContext } from 'utils/context/status'
+import { Status } from 'components/atoms'
+import { HeaderOrga, TableOrga } from 'components/organisms'
+import { StatusContext } from 'utils'
 
 export const HomeTemp: React.FC = () => {
   const status = useContext(StatusContext)

@@ -1,10 +1,9 @@
 import Link from 'next/link'
 import { useContext } from 'react'
 
-import { InputCell } from 'components/atoms/tables/InputCell'
-import { TableBodyMole } from 'components/molecules/TableBodyMole'
-import { TableHeaderMole } from 'components/molecules/TableHeaderMole'
-import { CellDataContext } from 'utils/context/cellData'
+import { InputCell } from 'components/atoms'
+import { TableBodyMole, TableHeaderMole } from 'components/molecules'
+import { CellDataContext } from 'utils'
 
 export const TableOrga: React.FC = () => {
   const cells = useContext(CellDataContext)

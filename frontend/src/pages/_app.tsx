@@ -4,9 +4,8 @@ import { ApolloProvider } from '@apollo/client'
 import { Session } from 'next-auth'
 import { SessionProvider } from 'next-auth/react'
 
-import { StatusProvider } from 'components/providers/StatusProvider'
-import { UserIdProvider } from 'components/providers/UserIdProvider'
-import { client } from 'utils/apollo-client'
+import { UserIdProvider, StatusProvider } from 'components/providers'
+import { client } from 'utils'
 
 import type { AppProps } from 'next/app'
 

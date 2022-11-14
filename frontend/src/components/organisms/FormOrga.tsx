@@ -2,11 +2,11 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { ComponentPropsWithoutRef, useContext, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { InputForm } from 'components/molecules/InputForm'
-import { useSubmit } from 'hooks/useSubmit'
-import { FormInput } from 'types/form'
-import { SetStatusContext } from 'utils/context/status'
-import { formSchema } from 'utils/schema'
+import { InputForm } from 'components/molecules'
+import { useSubmit } from 'hooks'
+import { SetStatusContext, formSchema } from 'utils'
+
+import type { FormInput } from 'types'
 
 type Props = ComponentPropsWithoutRef<'input'> & {
   serviceDefault: string

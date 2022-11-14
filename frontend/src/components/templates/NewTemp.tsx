@@ -1,5 +1,4 @@
-import { FormOrga } from 'components/organisms/FormOrga'
-import { HeaderOrga } from 'components/organisms/HeaderOrga'
+import { FormOrga, HeaderOrga } from 'components/organisms'
 
 export const NewTemp: React.FC = () => {
   return (

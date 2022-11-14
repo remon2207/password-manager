@@ -1,8 +1,9 @@
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 
-import { Message } from 'types/form'
-import { pwDeleter } from 'utils/mutation'
+import { pwDeleter } from 'utils'
+
+import type { Message } from 'types'
 
 export const useClick = () => {
   const [pwDelete] = useMutation<Message>(pwDeleter)

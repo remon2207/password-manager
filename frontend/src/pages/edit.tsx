@@ -1,13 +1,10 @@
 import { useContext, useEffect } from 'react'
 
-import { EditTemp } from 'components/templates/EditTemp'
-import { client } from 'utils/apollo-client'
-import { PwInfoContext } from 'utils/context/fetchData'
-import { SetStatusContext } from 'utils/context/status'
-import { getPw } from 'utils/query'
+import { EditTemp } from 'components/templates'
+import { client, getPw, PwInfoContext, SetStatusContext } from 'utils'
 
 import type { GetServerSideProps, NextPage } from 'next'
-import type { GetPw } from 'types/pw'
+import type { GetPw } from 'types'
 
 type Props = GetPw
 

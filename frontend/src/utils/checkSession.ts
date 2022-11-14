@@ -2,12 +2,12 @@ import { GetServerSidePropsContext } from 'next'
 import { unstable_getServerSession } from 'next-auth'
 
 import { authOptions } from 'pages/api/auth/[...nextauth]'
-import { GetPws } from 'types/pw'
-import { GetUserId } from 'types/user'
 
 import { client } from './apollo-client'
 import { userRegister } from './mutation'
-import { getPws, getUserId } from './query'
+import { getUserId, getPws } from './query'
+
+import type { GetPws, GetUserId } from 'types'
 
 export const checkSession = async (context: GetServerSidePropsContext) => {
   const session = await unstable_getServerSession(

@@ -1,12 +1,10 @@
 import { useContext, useEffect } from 'react'
 
-import { HomeTemp } from 'components/templates/HomeTemp'
-import { checkSession } from 'utils/checkSession'
-import { CellDataContext } from 'utils/context/cellData'
-import { SetUserIdContext } from 'utils/context/user'
+import { HomeTemp } from 'components/templates'
+import { checkSession, CellDataContext, SetUserIdContext } from 'utils'
 
 import type { GetServerSideProps, NextPage } from 'next'
-import type { GetPws } from 'types/pw'
+import type { GetPws } from 'types'
 
 type Props = GetPws & {
   userId: number

@@ -2,11 +2,10 @@ import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
 
-import { UserIdContext } from 'utils/context/user'
-import { pwRegister, pwUpdater } from 'utils/mutation'
+import { pwRegister, pwUpdater, UserIdContext } from 'utils'
 
 import type { SubmitHandler } from 'react-hook-form'
-import type { FormInput, Message } from 'types/form'
+import type { FormInput, Message } from 'types'
 
 export const useSubmit = () => {
   const router = useRouter()

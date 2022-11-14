@@ -1,4 +1,4 @@
-import { Description } from 'components/atoms/forms/Description'
+import { Description } from 'components/atoms'
 
 import type { ComponentPropsWithoutRef } from 'react'
 import type { UseFormRegisterReturn } from 'react-hook-form'

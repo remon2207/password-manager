@@ -1,6 +1,6 @@
 import { createContext } from 'react'
 
-import type { SetUserIdState } from 'types/context'
+import type { SetUserIdState } from 'types'
 
 export const UserIdContext = createContext(0)
 

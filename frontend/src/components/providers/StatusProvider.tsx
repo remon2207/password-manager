@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { SetStatusContext, StatusContext } from 'utils/context/status'
+import { SetStatusContext, StatusContext } from 'utils'
 
 type Props = {
   children: React.ReactNode

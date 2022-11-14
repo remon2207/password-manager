@@ -1,6 +1,6 @@
 import { signOut } from 'next-auth/react'
 
-import { Nav } from 'components/atoms/headers/Nav'
+import { Nav } from 'components/atoms'
 
 export const HeaderMole: React.FC = () => {
   return (
