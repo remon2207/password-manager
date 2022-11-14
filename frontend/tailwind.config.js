@@ -5,15 +5,17 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        'slide-in-bottom': '-translate-y-1/2'
+        'slide-in-bottom': 'slide-in-bottom 0.6s ease-out'
       },
       keyframes: {
         'slide-in-bottom': {
           '0%': {
-            transform: 'translateY(50%)'
+            transform: 'translateY(100%)',
+            opacity: '0'
           },
           '100%': {
-            transform: 'translateY(0%)'
+            transform: 'translateY(0%)',
+            opacity: '1'
           }
         }
       }

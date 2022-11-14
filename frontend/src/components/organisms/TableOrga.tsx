@@ -15,7 +15,7 @@ export const TableOrga: React.FC = () => {
   return (
     <>
       {cells.length > 0 && (
-        <table className="mx-auto w-full table-auto lg:w-full xl:w-1/2">
+        <table className="mx-auto w-full table-auto lg:w-full xl:w-1/2 animate-slide-in-bottom">
           <thead>
             <TableHeaderMole />
           </thead>
