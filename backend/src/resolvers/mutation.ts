@@ -1,5 +1,4 @@
-import { addPw, deletePw, pwUpdate } from './pw'
-import { addUser, deleteUser } from './user'
+import { addUser, deleteUser, addPw, deletePw, pwUpdate } from './index'
 
 import type { MutationResolvers } from 'generated/graphql'
 

@@ -1,5 +1,4 @@
-import { getPw, getPws } from './pw'
-import { getUser, getUsers, getUserId } from './user'
+import { getPw, getPws, getUser, getUsers, getUserId } from './index'
 
 import type { QueryResolvers } from 'generated/graphql'
 

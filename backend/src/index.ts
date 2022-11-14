@@ -29,8 +29,4 @@ const startServer = async () => {
   httpServer.listen({ port })
 }
 
-// (async () => {
-// startServer()
-// )()
-
 startServer().finally(() => console.log('start'))

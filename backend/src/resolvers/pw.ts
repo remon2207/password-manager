@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt'
 import { GraphQLError } from 'graphql'
 import validator from 'validator'
 
-import type { Pw } from 'types/pw'
+import type { Pw } from 'types'
 
 const prisma = new PrismaClient()
 

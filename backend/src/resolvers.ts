@@ -1,5 +1,4 @@
-import { mutation } from 'resolvers/mutation'
-import { query } from 'resolvers/query'
+import { mutation, query } from 'resolvers/index'
 
 export const resolvers = {
   Query: query,
