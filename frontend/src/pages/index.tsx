@@ -1,7 +1,8 @@
 import { useContext, useEffect } from 'react'
 
 import { HomeTemp } from 'components/templates'
-import { checkSession, CellDataContext, SetUserIdContext } from 'utils'
+import { CellDataContext, SetUserIdContext } from 'utils'
+import { checkSession } from 'utils/checkSession'
 
 import type { GetServerSideProps, NextPage } from 'next'
 import type { GetPws } from 'types'

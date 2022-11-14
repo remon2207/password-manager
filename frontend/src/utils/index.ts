@@ -1,5 +1,4 @@
 export { client } from './apollo-client'
-export { checkSession } from './checkSession'
 export { pwRegister, pwUpdater, pwDeleter, userRegister } from './mutation'
 export { getPws, getPw, getUserId } from './query'
 export { CellDataContext } from './context/cellData'
