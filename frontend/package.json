@@ -9,7 +9,8 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "format": "prettier --write ./src",
-    "lint:format": "npm run lint:fix && npm run format"
+    "lint:format": "npm run lint:fix && npm run format",
+    "cleanrei": "rm -rf node_modules package-lock.json; npm i"
   },
   "dependencies": {
     "@apollo/client": "^3.7.1",
