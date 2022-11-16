@@ -1,0 +1,7 @@
+/.eslintrc.js
+/webpack.*.js
+/prisma/seed.ts
+
+/node_modules/
+/dist/
+/src/generated/

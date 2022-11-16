@@ -1,0 +1,43 @@
+version: '3.8'
+services:
+  api:
+    build:
+      context: '.'
+      dockerfile: './backend/Dockerfile'
+    container_name: 'api'
+    volumes:
+      - './backend:/usr/src/app'
+    environment:
+      NODE_ENV: 'development'
+    ports:
+      - '${API_PORT:-4000}:4000'
+    command: 'npm run dev:watch'
+    depends_on:
+      - 'db'
+  db:
+    image: 'postgres:13-alpine'
+    container_name: 'postgres'
+    volumes:
+      - 'db_data:/var/lib/postgresql/data'
+    environment:
+      POSTGRES_PASSWORD: '${DB_PASSWORD}'
+      TZ: 'Asia/Tokyo'
+    ports:
+      - '${DB_PORT:-5432}:5432'
+  nextjs:
+    build:
+      context: '.'
+      dockerfile: './Dockerfile'
+    container_name: 'nextjs'
+    volumes:
+      - './frontend:/usr/src/app'
+    environment:
+      NODE_ENV: 'development'
+    ports:
+      - '${NEXT_PORT:-3000}:3000'
+    command: 'npm run dev'
+    depends_on:
+      - 'api'
+      - 'db'
+volumes:
+  db_data:
