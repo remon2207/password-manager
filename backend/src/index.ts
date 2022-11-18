@@ -25,7 +25,12 @@ const server = new ApolloServer<BaseContext>({
 
 const startServer = async () => {
   await server.start()
-  app.use('/graphql', cors(), express.json(), expressMiddleware(server))
+  app.use(
+    '/graphql',
+    cors({ origin: 'http://localhost:3000' }),
+    express.json(),
+    expressMiddleware(server)
+  )
   httpServer.listen({ port })
 }
 
