@@ -84,6 +84,7 @@ export type Query = {
   __typename?: 'Query';
   getPw: PwInfo;
   getPws: Array<Maybe<PwInfo>>;
+  getServers: Array<Maybe<Server>>;
   getUser: User;
   getUserId: User;
   getUsers: Array<Maybe<User>>;
@@ -100,6 +101,11 @@ export type QueryGetPwsArgs = {
 };
 
 
+export type QueryGetServersArgs = {
+  userId: Scalars['Int'];
+};
+
+
 export type QueryGetUserArgs = {
   id: Scalars['Int'];
 };
@@ -108,6 +114,20 @@ export type QueryGetUserArgs = {
 export type QueryGetUserIdArgs = {
   email: Scalars['String'];
   name: Scalars['String'];
+};
+
+export type Server = {
+  __typename?: 'Server';
+  device: Scalars['String'];
+  hostname: Scalars['String'];
+  id: Scalars['Int'];
+  ip: Scalars['String'];
+  password: Scalars['String'];
+  port: Scalars['Int'];
+  url: Scalars['String'];
+  usage: Scalars['String'];
+  userId: Scalars['Int'];
+  username: Scalars['String'];
 };
 
 export type UpdatePwInfoInput = {
@@ -204,6 +224,7 @@ export type ResolversTypes = {
   NewUserInput: NewUserInput;
   PwInfo: ResolverTypeWrapper<PwInfo>;
   Query: ResolverTypeWrapper<{}>;
+  Server: ResolverTypeWrapper<Server>;
   String: ResolverTypeWrapper<Scalars['String']>;
   UpdatePwInfoInput: UpdatePwInfoInput;
   User: ResolverTypeWrapper<User>;
@@ -219,6 +240,7 @@ export type ResolversParentTypes = {
   NewUserInput: NewUserInput;
   PwInfo: PwInfo;
   Query: {};
+  Server: Server;
   String: Scalars['String'];
   UpdatePwInfoInput: UpdatePwInfoInput;
   User: User;
@@ -252,9 +274,24 @@ export type PwInfoResolvers<ContextType = any, ParentType extends ResolversParen
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   getPw?: Resolver<ResolversTypes['PwInfo'], ParentType, ContextType, RequireFields<QueryGetPwArgs, 'id'>>;
   getPws?: Resolver<Array<Maybe<ResolversTypes['PwInfo']>>, ParentType, ContextType, RequireFields<QueryGetPwsArgs, 'userId'>>;
+  getServers?: Resolver<Array<Maybe<ResolversTypes['Server']>>, ParentType, ContextType, RequireFields<QueryGetServersArgs, 'userId'>>;
   getUser?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<QueryGetUserArgs, 'id'>>;
   getUserId?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<QueryGetUserIdArgs, 'email' | 'name'>>;
   getUsers?: Resolver<Array<Maybe<ResolversTypes['User']>>, ParentType, ContextType>;
+};
+
+export type ServerResolvers<ContextType = any, ParentType extends ResolversParentTypes['Server'] = ResolversParentTypes['Server']> = {
+  device?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  hostname?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  ip?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  password?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  port?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  url?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  usage?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  userId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  username?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
@@ -269,6 +306,7 @@ export type Resolvers<ContextType = any> = {
   Mutation?: MutationResolvers<ContextType>;
   PwInfo?: PwInfoResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  Server?: ServerResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
 };
 

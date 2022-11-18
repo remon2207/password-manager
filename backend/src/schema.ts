@@ -5,6 +5,7 @@ export const typeDefs = `#graphql
     getUserId(name: String!, email: String!): User!
     getPws(userId: Int!): [PwInfo]!
     getPw(id: Int!): PwInfo!
+    getServers(userId: Int!): [Server]!
   }
 
   type Mutation {
@@ -34,6 +35,19 @@ export const typeDefs = `#graphql
     password: String!
     twoFactor: Boolean!
     secret: String!
+  }
+
+  type Server {
+    id: Int!
+    userId: Int!
+    usage: String!
+    hostname: String!
+    ip: String!
+    username: String!
+    password: String!
+    device: String!
+    port: Int!
+    url: String!
   }
 
   input NewUserInput {
