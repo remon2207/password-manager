@@ -2,6 +2,7 @@ import { useContext } from 'react'
 
 import { Status } from 'components/atoms'
 import { HeaderOrga, TableOrga } from 'components/organisms'
+import { SideBar } from 'components/organisms/SideBar'
 import { StatusContext } from 'utils'
 
 export const HomeTemp: React.FC = () => {
@@ -10,6 +11,7 @@ export const HomeTemp: React.FC = () => {
   return (
     <>
       <HeaderOrga />
+      <SideBar className="hidden hover:underline xl:block" wrapperClassName="absolute left-52 top-36 flex flex-col" />
       <main>
         <div className="flex flex-col items-center justify-center">
           {status && (
