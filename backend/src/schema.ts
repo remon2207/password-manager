@@ -17,6 +17,7 @@ export const typeDefs = `#graphql
     pwDeleter(id: Int!): Message!
     serverRegister(server: NewServerInput!): Message!
     serverUpdater(server: UpdateServerInput!): Message!
+    serverDeleter(id: Int!): Message!
   }
 
   type Message {

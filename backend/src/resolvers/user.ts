@@ -86,7 +86,12 @@ export const deleteUser = async (id: number) => {
   }
   const deletePws = prisma.password.deleteMany({
     where: {
-      id
+      userId: id
+    }
+  })
+  const deleteServers = prisma.server.deleteMany({
+    where: {
+      userId: id
     }
   })
   const deleteUser = prisma.user.delete({
@@ -96,7 +101,7 @@ export const deleteUser = async (id: number) => {
   })
 
   try {
-    await prisma.$transaction([deletePws, deleteUser])
+    await prisma.$transaction([deletePws, deleteServers, deleteUser])
   } catch (e) {
     throw new GraphQLError('Account not found')
   }

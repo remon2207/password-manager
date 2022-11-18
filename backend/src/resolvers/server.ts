@@ -94,3 +94,17 @@ export const serverUpdate: Server = async (
 
   return message
 }
+
+export const serverDelete = async (id: number) => {
+  const message = {
+    message: 'Deleted server successfully'
+  }
+
+  await prisma.server.delete({
+    where: {
+      id
+    }
+  })
+
+  return message
+}

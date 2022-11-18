@@ -1,5 +1,5 @@
 import { addPw, deletePw, pwUpdate } from './pw'
-import { addServer, serverUpdate } from './server'
+import { addServer, serverDelete, serverUpdate } from './server'
 import { addUser, deleteUser } from './user'
 
 import type { MutationResolvers } from 'generated/graphql'
@@ -51,5 +51,6 @@ export const mutation: MutationResolvers = {
       server.device,
       server.port,
       server.url
-    )
+    ),
+  serverDeleter: (_, { id }) => serverDelete(id)
 }
