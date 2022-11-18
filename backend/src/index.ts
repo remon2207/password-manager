@@ -34,4 +34,14 @@ const startServer = async () => {
   httpServer.listen({ port })
 }
 
-startServer().finally(() => console.log('start'))
+const nodeEnv = process.env.NODE_ENV
+
+if (nodeEnv === 'development') {
+  startServer().finally(() =>
+    console.log('🚀  Server ready at: http://localhost:4000/graphql')
+  )
+}
+
+if (nodeEnv === 'production') {
+  startServer().finally(() => {})
+}
