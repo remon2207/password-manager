@@ -1,5 +1,5 @@
 import { getPw, getPws } from './pw'
-import { getServers } from './server'
+import { getServer, getServers } from './server'
 import { getUser, getUsers, getUserId } from './user'
 
 import type { QueryResolvers } from 'generated/graphql'
@@ -10,5 +10,6 @@ export const query: QueryResolvers = {
   getUserId: (_, { name, email }) => getUserId(name, email),
   getPws: (_, { userId }) => getPws(userId),
   getPw: (_, { id }) => getPw(id),
-  getServers: (_, { userId }) => getServers(userId)
+  getServers: (_, { userId }) => getServers(userId),
+  getServer: (_, { id }) => getServer(id)
 }

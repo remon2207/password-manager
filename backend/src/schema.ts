@@ -6,6 +6,7 @@ export const typeDefs = `#graphql
     getPws(userId: Int!): [PwInfo]!
     getPw(id: Int!): PwInfo!
     getServers(userId: Int!): [Server]!
+    getServer(id: Int!): Server!
   }
 
   type Mutation {
