@@ -16,6 +16,7 @@ export const typeDefs = `#graphql
     pwUpdater(pw: UpdatePwInfoInput!): Message!
     pwDeleter(id: Int!): Message!
     serverRegister(server: NewServerInput!): Message!
+    serverUpdater(server: UpdateServerInput!): Message!
   }
 
   type Message {
@@ -87,5 +88,17 @@ export const typeDefs = `#graphql
     password: String!
     twoFactor: Boolean!
     secret: String!
+  }
+
+  input UpdateServerInput {
+    id: Int!
+    usage: String!
+    hostname: String!
+    ip: String!
+    username: String!
+    password: String!
+    device: String!
+    port: Int!
+    url: String!
   }
 `

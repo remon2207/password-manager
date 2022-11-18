@@ -62,3 +62,35 @@ export const addServer: Server = async (
 
   return message
 }
+
+export const serverUpdate: Server = async (
+  id,
+  usage,
+  hostname,
+  ip,
+  username,
+  password,
+  device,
+  port
+) => {
+  const message = {
+    message: 'Updated server successfully'
+  }
+
+  await prisma.server.update({
+    where: {
+      id
+    },
+    data: {
+      usage,
+      hostname,
+      ip,
+      username,
+      password,
+      device,
+      port
+    }
+  })
+
+  return message
+}
