@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import '../styles/globals.css'
 import { ApolloProvider } from '@apollo/client'
 import { Session } from 'next-auth'
