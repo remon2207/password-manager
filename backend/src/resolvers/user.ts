@@ -18,7 +18,6 @@ export const getUser = async (id: number) => {
   })
 
   if (!user) {
-    // throw new ApolloError('Account not found', 'NOT_FOUND')
     throw new GraphQLError('Account not found')
   }
 
@@ -45,12 +44,10 @@ export const addUser = async (name: string, email: string) => {
   const isEmail = validator.isEmail(email)
 
   if (isEmptyName) {
-    // throw new ApolloError('Name not found', 'NOT_FOUND')
     throw new GraphQLError('Name not found')
   }
 
   if (isEmptyEmail) {
-    // throw new ApolloError('Email not found', 'NOT_FOUND')
     throw new GraphQLError('Email not found')
   }
 
@@ -63,7 +60,6 @@ export const addUser = async (name: string, email: string) => {
     })
 
     if (isUserExists) {
-      // throw new ApolloError('Account is already registed')
       throw new GraphQLError('Account is already registed')
     } else {
       const message = {
@@ -80,7 +76,6 @@ export const addUser = async (name: string, email: string) => {
       return message
     }
   } else {
-    // throw new ApolloError('Not email')
     throw new GraphQLError('Not email')
   }
 }
@@ -103,7 +98,6 @@ export const deleteUser = async (id: number) => {
   try {
     await prisma.$transaction([deletePws, deleteUser])
   } catch (e) {
-    // throw new ApolloError('Account not found', 'NOT_FOUND')
     throw new GraphQLError('Account not found')
   }
 

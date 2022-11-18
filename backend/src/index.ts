@@ -25,8 +25,23 @@ const server = new ApolloServer<BaseContext>({
 
 const startServer = async () => {
   await server.start()
-  app.use('/graphql', cors(), express.json(), expressMiddleware(server))
+  app.use(
+    '/graphql',
+    cors({ origin: 'http://localhost:3000' }),
+    express.json(),
+    expressMiddleware(server)
+  )
   httpServer.listen({ port })
 }
 
-startServer().finally(() => {})
+const nodeEnv = process.env.NODE_ENV
+
+if (nodeEnv === 'development') {
+  startServer().finally(() =>
+    console.log('🚀  Server ready at: http://localhost:4000/graphql')
+  )
+}
+
+if (nodeEnv === 'production') {
+  startServer().finally(() => {})
+}
