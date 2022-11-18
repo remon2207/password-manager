@@ -60,6 +60,7 @@ export const FormOrga: React.FC<Props> = ({
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col items-center justify-center">
           <InputForm
+            className="w-80"
             defaultValue={serviceDefault}
             error={errors.service?.message}
             htmlFor="service"
@@ -68,6 +69,7 @@ export const FormOrga: React.FC<Props> = ({
             type="text"
           />
           <InputForm
+            className="w-80"
             defaultValue={emailDefault}
             error={errors.email?.message}
             htmlFor="email"
@@ -76,6 +78,7 @@ export const FormOrga: React.FC<Props> = ({
             type="email"
           />
           <InputForm
+            className="w-80"
             defaultValue={nameDefault}
             error={errors.name?.message}
             htmlFor="name"
@@ -84,6 +87,7 @@ export const FormOrga: React.FC<Props> = ({
             type="text"
           />
           <InputForm
+            className="w-80"
             defaultValue={passwordDefault}
             error={errors.password?.message}
             htmlFor="password"
@@ -102,6 +106,7 @@ export const FormOrga: React.FC<Props> = ({
             type="checkbox"
           />
           <InputForm
+            className="w-80"
             defaultValue={secretDefault}
             error={errors.secret?.message}
             htmlFor="secret"
