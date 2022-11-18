@@ -17,6 +17,7 @@ model User {
   name      String     @unique @db.VarChar(255)
   email     String     @unique @db.VarChar(255)
   passwords Password[]
+  servers    Server[]
 }
 
 model Password {
@@ -30,5 +31,22 @@ model Password {
   password  String   @db.VarChar(255)
   twoFactor Boolean  @default(false)
   secret    String   @db.VarChar(255)
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Server {
+  id        Int      @id @unique @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    Int
+  usage     String   @db.VarChar(255)
+  hostname  String   @db.VarChar(255)
+  ip        String   @db.VarChar(255)
+  username  String   @db.VarChar(255)
+  password  String   @db.VarChar(255)
+  twoFactor Boolean  @default(false)
+  device    String   @db.VarChar(255)
+  port      Int
+  url       String   @db.VarChar(255)
   user      User     @relation(fields: [userId], references: [id])
 }

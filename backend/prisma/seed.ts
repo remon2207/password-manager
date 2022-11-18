@@ -16,6 +16,18 @@ const main = async () => {
           twoFactor: false,
           secret: ''
         }
+      },
+      servers: {
+        create: {
+          usage: 'shell',
+          hostname: 'hostname',
+          ip: '127.0.0.1',
+          username: 'username',
+          password: 'password',
+          device: 'device',
+          port: 0,
+          url: ''
+        }
       }
     }
   })
