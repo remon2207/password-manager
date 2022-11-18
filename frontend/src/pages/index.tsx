@@ -38,7 +38,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       }
     }
   }
-  const { getPws } = session.data
+  const { getPws } = session.pws
   const { userId } = session
 
   return {
