@@ -1,5 +1,4 @@
 import { PrismaClient } from '@prisma/client'
-// import { ApolloError, UserInputError } from 'apollo-server-core'
 import bcrypt from 'bcrypt'
 import { GraphQLError } from 'graphql'
 import validator from 'validator'
@@ -29,7 +28,6 @@ export const getPw = async (id: number) => {
   })
 
   if (!pw) {
-    // throw new ApolloError('Password info not found', 'NOT_FOUND')
     throw new GraphQLError('Password info not found')
   }
 
@@ -70,7 +68,6 @@ export const addPw: Pw = async (
   }
 
   if (isEmptyService) {
-    // throw new UserInputError('Should input service name')
     throw new GraphQLError('Should input service name')
   }
 
@@ -89,7 +86,6 @@ export const addPw: Pw = async (
   if (isEmail && !isEmptyPw) {
     return createPwInfo(hashPw)
   }
-  // throw new UserInputError('Not email')
   throw new GraphQLError('Not email')
 }
 
@@ -107,7 +103,6 @@ export const pwUpdate: Pw = async (
   const isEmail = validator.isEmail(email)
 
   if (isEmptyService) {
-    // throw new UserInputError('Should input service name')
     throw new GraphQLError('Should input service name')
   }
 
@@ -132,7 +127,6 @@ export const pwUpdate: Pw = async (
     return message
   }
 
-  // throw new ApolloError('Not email')
   throw new GraphQLError('Not email')
 }
 
@@ -150,7 +144,6 @@ export const deletePw = async (id: number) => {
 
     return message
   } catch (e) {
-    // throw new ApolloError('Password info not found', 'NOT_FOUND')
     throw new GraphQLError('Password info not found')
   }
 }
