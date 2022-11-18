@@ -27,7 +27,7 @@ const startServer = async () => {
   await server.start()
   app.use(
     '/graphql',
-    cors({ origin: 'http://localhost:3000' }),
+    cors({ origin: 'http://192.168.1.39:3000' }),
     express.json(),
     expressMiddleware(server)
   )
