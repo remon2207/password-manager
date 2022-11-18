@@ -1,6 +1,8 @@
 import { PrismaClient } from '@prisma/client'
 import { GraphQLError } from 'graphql'
 
+import { Server } from 'types/server'
+
 const prisma = new PrismaClient()
 
 export const getServers = async (userId: number) => {
@@ -28,4 +30,35 @@ export const getServer = async (id: number) => {
   }
 
   return server
+}
+
+export const addServer: Server = async (
+  userId,
+  usage,
+  hostname,
+  ip,
+  username,
+  password,
+  device,
+  port,
+  url
+) => {
+  const message = {
+    message: 'Created server successfully'
+  }
+  await prisma.server.create({
+    data: {
+      userId,
+      usage,
+      hostname,
+      ip,
+      username,
+      password,
+      device,
+      port,
+      url
+    }
+  })
+
+  return message
 }

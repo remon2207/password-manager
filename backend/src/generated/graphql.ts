@@ -24,6 +24,7 @@ export type Mutation = {
   pwDeleter: Message;
   pwRegister: Message;
   pwUpdater: Message;
+  serverRegister: Message;
   userDeleter: Message;
   userRegister: Message;
 };
@@ -44,6 +45,11 @@ export type MutationPwUpdaterArgs = {
 };
 
 
+export type MutationServerRegisterArgs = {
+  server: NewServerInput;
+};
+
+
 export type MutationUserDeleterArgs = {
   id: Scalars['Int'];
 };
@@ -61,6 +67,18 @@ export type NewPwInfoInput = {
   service: Scalars['String'];
   twoFactor: Scalars['Boolean'];
   userId: Scalars['Int'];
+};
+
+export type NewServerInput = {
+  device: Scalars['String'];
+  hostname: Scalars['String'];
+  ip: Scalars['String'];
+  password: Scalars['String'];
+  port: Scalars['Int'];
+  url: Scalars['String'];
+  usage: Scalars['String'];
+  userId: Scalars['Int'];
+  username: Scalars['String'];
 };
 
 export type NewUserInput = {
@@ -227,6 +245,7 @@ export type ResolversTypes = {
   Message: ResolverTypeWrapper<Message>;
   Mutation: ResolverTypeWrapper<{}>;
   NewPwInfoInput: NewPwInfoInput;
+  NewServerInput: NewServerInput;
   NewUserInput: NewUserInput;
   PwInfo: ResolverTypeWrapper<PwInfo>;
   Query: ResolverTypeWrapper<{}>;
@@ -243,6 +262,7 @@ export type ResolversParentTypes = {
   Message: Message;
   Mutation: {};
   NewPwInfoInput: NewPwInfoInput;
+  NewServerInput: NewServerInput;
   NewUserInput: NewUserInput;
   PwInfo: PwInfo;
   Query: {};
@@ -261,6 +281,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   pwDeleter?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationPwDeleterArgs, 'id'>>;
   pwRegister?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationPwRegisterArgs, 'pw'>>;
   pwUpdater?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationPwUpdaterArgs, 'pw'>>;
+  serverRegister?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationServerRegisterArgs, 'server'>>;
   userDeleter?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationUserDeleterArgs, 'id'>>;
   userRegister?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationUserRegisterArgs, 'user'>>;
 };
