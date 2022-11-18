@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react'
 
 import { EditTemp } from 'components/templates'
 import { client, getPw, PwInfoContext, SetStatusContext } from 'utils'
+import { checkSession } from 'utils/checkSession'
 
 import type { GetServerSideProps, NextPage } from 'next'
 import type { GetPw } from 'types'
@@ -10,7 +11,6 @@ type Props = GetPw
 
 const Edit: NextPage<Props> = ({ getPw }) => {
   const setStatus = useContext(SetStatusContext)
-  // const pwInfo = useContext(PwInfoContext)
 
   useEffect(() => {
     setStatus('')
@@ -37,7 +37,24 @@ const Edit: NextPage<Props> = ({ getPw }) => {
 export default Edit
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const pwId = Number(context.query.id)
+  const session = await checkSession(context)
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/signin',
+        permanent: false
+      }
+    }
+  }
+
+  const { id } = context.query
+  if (typeof id !== 'string') {
+    return {
+      props: {}
+    }
+  }
+  const pwId = parseInt(id, 10)
   const { data } = await client.query<GetPw>({
     query: getPw,
     variables: { id: pwId }

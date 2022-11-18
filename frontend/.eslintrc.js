@@ -65,12 +65,7 @@ const config = {
     'react/jsx-sort-props': 'warn',
     'react/jsx-props-no-multi-spaces': 'error',
     'react/jsx-no-useless-fragment': 'off',
-    'react/jsx-props-no-spreading': [
-      'error',
-      {
-        html: 'ignore'
-      }
-    ]
+    'react/jsx-props-no-spreading': 'off',
   }
 }
 
