@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { Nav } from 'components/atoms'
 import { useSubmit } from 'hooks'
 import { ServerFormInput } from 'types/form'
+import { UserIdContext } from 'utils'
 import { ServerInfoContext } from 'utils/context/fetchData'
 import { serverFormSchema } from 'utils/schema'
 
@@ -13,6 +14,7 @@ import { CommonForm } from './index'
 export const ServerForm: React.FC = () => {
   const { id, usage, hostname, ip, username, password, device, port, url } =
     useContext(ServerInfoContext)
+  const userId = useContext(UserIdContext)
   const { onSubmitServer } = useSubmit()
   const {
     register,
@@ -21,6 +23,7 @@ export const ServerForm: React.FC = () => {
   } = useForm<ServerFormInput>({
     defaultValues: {
       id,
+      userId,
       usage,
       hostname,
       ip,
@@ -97,7 +100,7 @@ export const ServerForm: React.FC = () => {
           error={errors.device?.message}
           htmlFor="device"
           labelName="URL"
-          register={register('device')}
+          register={register('url')}
           type="text"
         />
         <div className="mt-14 flex flex-row items-center justify-center gap-24">
