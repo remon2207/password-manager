@@ -7,14 +7,20 @@ type Props = {
   editText: string
   id: number
   pw?: string
+  location: string
 }
 
-export const CommonTable: React.FC<Props> = ({ children, editText, id }) => {
+export const CommonTable: React.FC<Props> = ({
+  children,
+  editText,
+  id,
+  location
+}) => {
   return (
     <>
       <tr>
         <TableBodyMole>
-          <Link href={`/edit?id=${id}`}>
+          <Link href={`/edit?location=${location}&id=${id}`}>
             <span className="hover:underline">{editText}</span>
           </Link>
         </TableBodyMole>

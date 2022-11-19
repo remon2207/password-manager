@@ -28,7 +28,7 @@ export const ServerTable: React.FC = () => {
         </thead>
         <tbody>
           {cells.map((cell) => (
-            <CommonTable key={cell.id} editText={cell.usage} id={cell.id}>
+            <CommonTable key={cell.id} editText={cell.usage} id={cell.id} location="server">
               <TableBodyMole>{cell.hostname}</TableBodyMole>
               <TableBodyMole>{cell.ip}</TableBodyMole>
               <TableBodyMole>{cell.username}</TableBodyMole>

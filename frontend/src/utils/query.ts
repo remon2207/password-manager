@@ -54,3 +54,20 @@ export const getServers = gql`
     }
   }
 `
+
+export const getServer = gql`
+  query Query($id: Int!) {
+    getServer(id: $id) {
+      id
+      userId
+      usage
+      hostname
+      ip
+      username
+      password
+      device
+      port
+      url
+    }
+  }
+`

@@ -4,7 +4,11 @@ import { Nav, MenuBtn } from 'components/atoms'
 import { SideBar } from 'components/organisms'
 import { useToggle } from 'hooks/useToggle'
 
-export const HeaderMole: React.FC = () => {
+type Props = {
+  location: string
+}
+
+export const HeaderMole: React.FC<Props> = ({ location }) => {
   const { open, handleClickToggle } = useToggle()
 
   return (
@@ -24,7 +28,7 @@ export const HeaderMole: React.FC = () => {
       )}
       <Nav
         className="page-transition-btn mx-auto scale-75 xl:scale-100"
-        href="/new"
+        href={`/new?location=${location}`}
         navText="Create new"
       />
       <Nav

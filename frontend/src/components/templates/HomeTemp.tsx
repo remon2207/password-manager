@@ -9,7 +9,7 @@ export const HomeTemp: React.FC = () => {
 
   return (
     <>
-      <HeaderOrga />
+      <HeaderOrga location="index" />
       <SideBar
         className="hidden hover:underline xl:block"
         wrapperClassName="absolute left-52 top-36 flex flex-col"

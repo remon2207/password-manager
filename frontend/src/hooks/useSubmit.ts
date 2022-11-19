@@ -2,18 +2,24 @@ import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
 
+import { ServerFormInput } from 'types/form'
 import { pwRegister, pwUpdater, UserIdContext } from 'utils'
+import { serverRegister, serverUpdater } from 'utils/mutation'
 
 import type { SubmitHandler } from 'react-hook-form'
 import type { FormInput, Message } from 'types'
 
 export const useSubmit = () => {
   const router = useRouter()
-  const [addPw, { data: addMessage }] = useMutation<Message>(pwRegister)
-  const [updatePw, { data: updateMessage }] = useMutation<Message>(pwUpdater)
+  const [addPw, { data: addPwMessage }] = useMutation<Message>(pwRegister)
+  const [updatePw, { data: updatePwMessage }] = useMutation<Message>(pwUpdater)
+  const [addServer, { data: addServerMessage }] =
+    useMutation<Message>(serverRegister)
+  const [updateServer, { data: updateServerMessage }] =
+    useMutation<Message>(serverUpdater)
   const userId = useContext(UserIdContext)
 
-  const onSubmit: SubmitHandler<FormInput> = async (data) => {
+  const onSubmitHome: SubmitHandler<FormInput> = async (data) => {
     if (router.pathname === '/new') {
       await addPw({
         variables: {
@@ -48,5 +54,62 @@ export const useSubmit = () => {
     }
   }
 
-  return { onSubmit, addMessage, updateMessage }
+  const onSubmitServer: SubmitHandler<ServerFormInput> = async ({
+    userId,
+    hostname,
+    ip,
+    password,
+    username,
+    id,
+    usage,
+    device,
+    port,
+    url
+  }) => {
+    if (router.pathname === '/new') {
+      await addServer({
+        variables: {
+          server: {
+            userId,
+            usage,
+            hostname,
+            ip,
+            username,
+            password,
+            device,
+            port,
+            url
+          }
+        }
+      })
+      await router.push('/server')
+    }
+    if (router.pathname === '/edit') {
+      await updateServer({
+        variables: {
+          server: {
+            id,
+            usage,
+            hostname,
+            ip,
+            username,
+            password,
+            device,
+            port,
+            url
+          }
+        }
+      })
+      await router.push('/server')
+    }
+  }
+
+  return {
+    onSubmitHome,
+    addPwMessage,
+    updatePwMessage,
+    onSubmitServer,
+    addServerMessage,
+    updateServerMessage
+  }
 }
