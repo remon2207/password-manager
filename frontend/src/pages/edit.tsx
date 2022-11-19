@@ -1,16 +1,22 @@
+import { useRouter } from 'next/router'
 import { useContext, useEffect } from 'react'
 
-import { EditTemp } from 'components/templates'
+import { HomeEdit } from 'components/templates/HomeEdit'
+import { ServerEdit } from 'components/templates/ServerEdit'
+import { GetServer } from 'types/server'
 import { client, getPw, PwInfoContext, SetStatusContext } from 'utils'
 import { checkSession } from 'utils/checkSession'
+import { ServerInfoContext } from 'utils/context/fetchData'
+import { getServer } from 'utils/query'
 
 import type { GetServerSideProps, NextPage } from 'next'
 import type { GetPw } from 'types'
 
-type Props = GetPw
+type Props = GetPw & GetServer
 
-const Edit: NextPage<Props> = ({ getPw }) => {
+const Edit: NextPage<Props> = ({ getPw, getServer }) => {
   const setStatus = useContext(SetStatusContext)
+  const router = useRouter()
 
   useEffect(() => {
     setStatus('')
@@ -18,18 +24,16 @@ const Edit: NextPage<Props> = ({ getPw }) => {
 
   return (
     <>
-      <PwInfoContext.Provider value={getPw}>
-        <EditTemp
-          defaultChecked={getPw.twoFactor}
-          emailDefault={getPw.email}
-          nameDefault={getPw.name}
-          passwordDefault={getPw.password}
-          pwId={getPw.id}
-          secretDefault={getPw.secret}
-          serviceDefault={getPw.service}
-          userId={getPw.userId}
-        />
-      </PwInfoContext.Provider>
+      {router.query.location === 'index' && (
+        <PwInfoContext.Provider value={getPw}>
+          <HomeEdit />
+        </PwInfoContext.Provider>
+      )}
+      {router.query.location === 'server' && (
+        <ServerInfoContext.Provider value={getServer}>
+          <ServerEdit />
+        </ServerInfoContext.Provider>
+      )}
     </>
   )
 }
@@ -54,14 +58,29 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       props: {}
     }
   }
-  const pwId = parseInt(id, 10)
-  const { data } = await client.query<GetPw>({
-    query: getPw,
-    variables: { id: pwId }
+  if (context.query.location === 'index') {
+    const pwId = parseInt(id, 10)
+    const { data: pw } = await client.query<GetPw>({
+      query: getPw,
+      variables: { id: pwId }
+    })
+    return {
+      props: {
+        getPw: pw.getPw
+      }
+    }
+  }
+
+  const serverId = parseInt(id, 10)
+  const { data: server } = await client.query<GetServer>({
+    query: getServer,
+    variables: {
+      id: serverId
+    }
   })
   return {
     props: {
-      getPw: data.getPw
+      getServer: server.getServer
     }
   }
 }

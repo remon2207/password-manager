@@ -1,10 +1,11 @@
 import { unstable_getServerSession } from 'next-auth/next'
 
 import { authOptions } from 'pages/api/auth/[...nextauth]'
+import { GetServers } from 'types/server'
 
 import { client } from './apollo-client'
 import { userRegister } from './mutation'
-import { getUserId, getPws } from './query'
+import { getUserId, getPws, getServers } from './query'
 
 import type { GetServerSidePropsContext } from 'next'
 import type { GetPws, GetUserId } from 'types'
@@ -33,7 +34,7 @@ export const checkSession = async (context: GetServerSidePropsContext) => {
       fetchPolicy: 'network-only'
     })
     const userId = user.getUserId.id
-    const { data } = await client.query<GetPws>({
+    const { data: pws } = await client.query<GetPws>({
       query: getPws,
       variables: {
         userId
@@ -41,8 +42,17 @@ export const checkSession = async (context: GetServerSidePropsContext) => {
       fetchPolicy: 'network-only'
     })
 
+    const { data: servers } = await client.query<GetServers>({
+      query: getServers,
+      variables: {
+        userId
+      },
+      fetchPolicy: 'network-only'
+    })
+
     return {
-      data,
+      pws,
+      servers,
       userId
     }
   } catch (e) {
@@ -64,8 +74,15 @@ export const checkSession = async (context: GetServerSidePropsContext) => {
       fetchPolicy: 'network-only'
     })
     const userId = user.getUserId.id
-    const { data } = await client.query<GetPws>({
+    const { data: pws } = await client.query<GetPws>({
       query: getPws,
+      variables: {
+        userId
+      },
+      fetchPolicy: 'network-only'
+    })
+    const { data: servers } = await client.query<GetServers>({
+      query: getServers,
       variables: {
         userId
       },
@@ -73,7 +90,8 @@ export const checkSession = async (context: GetServerSidePropsContext) => {
     })
 
     return {
-      data,
+      pws,
+      servers,
       userId
     }
   }

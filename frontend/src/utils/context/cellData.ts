@@ -14,3 +14,20 @@ const defaultValue = [
 ]
 
 export const CellDataContext = createContext(defaultValue)
+
+const serverCellDefaultValue = [
+  {
+    id: 0,
+    userId: 0,
+    usage: '',
+    hostname: '',
+    ip: '',
+    username: '',
+    password: '',
+    device: '',
+    port: 0,
+    url: ''
+  }
+]
+
+export const ServerCellDataContext = createContext(serverCellDefaultValue)

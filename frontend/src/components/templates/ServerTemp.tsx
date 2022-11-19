@@ -1,15 +1,15 @@
 import { useContext } from 'react'
 
 import { Status } from 'components/atoms'
-import { HeaderOrga, HomeTable, SideBar } from 'components/organisms'
+import { HeaderOrga, ServerTable, SideBar } from 'components/organisms'
 import { StatusContext } from 'utils'
 
-export const HomeTemp: React.FC = () => {
+export const ServerTemp: React.FC = () => {
   const status = useContext(StatusContext)
 
   return (
     <>
-      <HeaderOrga location="index" />
+      <HeaderOrga location="server" />
       <SideBar
         className="hidden hover:underline xl:block"
         wrapperClassName="absolute left-52 top-36 flex flex-col"
@@ -22,7 +22,7 @@ export const HomeTemp: React.FC = () => {
               statusMessage={status}
             />
           )}
-          <HomeTable />
+          <ServerTable />
         </div>
       </main>
     </>

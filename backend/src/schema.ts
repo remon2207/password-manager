@@ -5,6 +5,8 @@ export const typeDefs = `#graphql
     getUserId(name: String!, email: String!): User!
     getPws(userId: Int!): [PwInfo]!
     getPw(id: Int!): PwInfo!
+    getServers(userId: Int!): [Server]!
+    getServer(id: Int!): Server!
   }
 
   type Mutation {
@@ -13,6 +15,9 @@ export const typeDefs = `#graphql
     pwRegister(pw: NewPwInfoInput!): Message!
     pwUpdater(pw: UpdatePwInfoInput!): Message!
     pwDeleter(id: Int!): Message!
+    serverRegister(server: NewServerInput!): Message!
+    serverUpdater(server: UpdateServerInput!): Message!
+    serverDeleter(id: Int!): Message!
   }
 
   type Message {
@@ -36,6 +41,19 @@ export const typeDefs = `#graphql
     secret: String!
   }
 
+  type Server {
+    id: Int!
+    userId: Int!
+    usage: String!
+    hostname: String!
+    ip: String!
+    username: String!
+    password: String!
+    device: String!
+    port: Int!
+    url: String!
+  }
+
   input NewUserInput {
     name: String!
     email: String!
@@ -51,6 +69,18 @@ export const typeDefs = `#graphql
     secret: String!
   }
 
+  input NewServerInput {
+    userId: Int!
+    usage: String!
+    hostname: String!
+    ip: String!
+    username: String!
+    password: String!
+    device: String!
+    port: Int!
+    url: String!
+  }
+
   input UpdatePwInfoInput {
     id: Int!
     service: String!
@@ -59,5 +89,17 @@ export const typeDefs = `#graphql
     password: String!
     twoFactor: Boolean!
     secret: String!
+  }
+
+  input UpdateServerInput {
+    id: Int!
+    usage: String!
+    hostname: String!
+    ip: String!
+    username: String!
+    password: String!
+    device: String!
+    port: Int!
+    url: String!
   }
 `

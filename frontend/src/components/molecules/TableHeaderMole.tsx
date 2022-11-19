@@ -1,19 +1,14 @@
 import { HeaderCell } from 'components/atoms'
 
-export const TableHeaderMole: React.FC = () => {
-  const cellsText = [
-    'Service',
-    'Email',
-    'Name',
-    'Password',
-    'TwoFactor',
-    'secret'
-  ]
+type Props = {
+  headerCellText?: string[]
+}
 
+export const TableHeaderMole: React.FC<Props> = ({ headerCellText }) => {
   return (
     <>
       <tr>
-        {cellsText.map((cell) => (
+        {headerCellText?.map((cell) => (
           <HeaderCell key={cell} className="table-cell" text={cell} />
         ))}
       </tr>

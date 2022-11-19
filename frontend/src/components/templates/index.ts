@@ -1,3 +1,6 @@
-export { EditTemp } from './EditTemp'
 export { HomeTemp } from './HomeTemp'
-export { NewTemp } from './NewTemp'
+export { HomeEdit } from './HomeEdit'
+export { HomeNew } from './HomeNew'
+export { ServerNew } from './ServerNew'
+export { ServerEdit } from './ServerEdit'
+export { ServerTemp } from './ServerTemp'

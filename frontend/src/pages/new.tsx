@@ -1,12 +1,17 @@
 import { useContext, useEffect } from 'react'
 
-import { NewTemp } from 'components/templates'
+import { HomeNew } from 'components/templates/HomeNew'
+import { ServerNew } from 'components/templates/ServerNew'
 import { SetStatusContext } from 'utils'
 import { checkSession } from 'utils/checkSession'
 
 import type { GetServerSideProps, NextPage } from 'next'
 
-const New: NextPage = () => {
+type Props = {
+  location: string
+}
+
+const New: NextPage<Props> = ({ location }) => {
   const setStatus = useContext(SetStatusContext)
 
   useEffect(() => {
@@ -15,7 +20,8 @@ const New: NextPage = () => {
 
   return (
     <>
-      <NewTemp />
+      {location === 'index' && <HomeNew />}
+      {location === 'server' && <ServerNew />}
     </>
   )
 }
@@ -24,6 +30,7 @@ export default New
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await checkSession(context)
+  const { location } = context.query
 
   if (!session) {
     return {
@@ -35,6 +42,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   return {
-    props: {}
+    props: {
+      location
+    }
   }
 }

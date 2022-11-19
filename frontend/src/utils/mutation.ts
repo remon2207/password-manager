@@ -31,3 +31,19 @@ export const userRegister = gql`
     }
   }
 `
+
+export const serverRegister = gql`
+  mutation Mutation($server: NewServerInput!) {
+    serverRegister(server: $server) {
+      message
+    }
+  }
+`
+
+export const serverUpdater = gql`
+  mutation Mutation($server: UpdateServerInput!) {
+    serverUpdater(server: $server) {
+      message
+    }
+  }
+`

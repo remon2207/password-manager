@@ -24,6 +24,9 @@ export type Mutation = {
   pwDeleter: Message;
   pwRegister: Message;
   pwUpdater: Message;
+  serverDeleter: Message;
+  serverRegister: Message;
+  serverUpdater: Message;
   userDeleter: Message;
   userRegister: Message;
 };
@@ -44,6 +47,21 @@ export type MutationPwUpdaterArgs = {
 };
 
 
+export type MutationServerDeleterArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type MutationServerRegisterArgs = {
+  server: NewServerInput;
+};
+
+
+export type MutationServerUpdaterArgs = {
+  server: UpdateServerInput;
+};
+
+
 export type MutationUserDeleterArgs = {
   id: Scalars['Int'];
 };
@@ -61,6 +79,18 @@ export type NewPwInfoInput = {
   service: Scalars['String'];
   twoFactor: Scalars['Boolean'];
   userId: Scalars['Int'];
+};
+
+export type NewServerInput = {
+  device: Scalars['String'];
+  hostname: Scalars['String'];
+  ip: Scalars['String'];
+  password: Scalars['String'];
+  port: Scalars['Int'];
+  url: Scalars['String'];
+  usage: Scalars['String'];
+  userId: Scalars['Int'];
+  username: Scalars['String'];
 };
 
 export type NewUserInput = {
@@ -84,6 +114,8 @@ export type Query = {
   __typename?: 'Query';
   getPw: PwInfo;
   getPws: Array<Maybe<PwInfo>>;
+  getServer: Server;
+  getServers: Array<Maybe<Server>>;
   getUser: User;
   getUserId: User;
   getUsers: Array<Maybe<User>>;
@@ -100,6 +132,16 @@ export type QueryGetPwsArgs = {
 };
 
 
+export type QueryGetServerArgs = {
+  id: Scalars['Int'];
+};
+
+
+export type QueryGetServersArgs = {
+  userId: Scalars['Int'];
+};
+
+
 export type QueryGetUserArgs = {
   id: Scalars['Int'];
 };
@@ -110,6 +152,20 @@ export type QueryGetUserIdArgs = {
   name: Scalars['String'];
 };
 
+export type Server = {
+  __typename?: 'Server';
+  device: Scalars['String'];
+  hostname: Scalars['String'];
+  id: Scalars['Int'];
+  ip: Scalars['String'];
+  password: Scalars['String'];
+  port: Scalars['Int'];
+  url: Scalars['String'];
+  usage: Scalars['String'];
+  userId: Scalars['Int'];
+  username: Scalars['String'];
+};
+
 export type UpdatePwInfoInput = {
   email: Scalars['String'];
   id: Scalars['Int'];
@@ -118,6 +174,18 @@ export type UpdatePwInfoInput = {
   secret: Scalars['String'];
   service: Scalars['String'];
   twoFactor: Scalars['Boolean'];
+};
+
+export type UpdateServerInput = {
+  device: Scalars['String'];
+  hostname: Scalars['String'];
+  id: Scalars['Int'];
+  ip: Scalars['String'];
+  password: Scalars['String'];
+  port: Scalars['Int'];
+  url: Scalars['String'];
+  usage: Scalars['String'];
+  username: Scalars['String'];
 };
 
 export type User = {
@@ -201,11 +269,14 @@ export type ResolversTypes = {
   Message: ResolverTypeWrapper<Message>;
   Mutation: ResolverTypeWrapper<{}>;
   NewPwInfoInput: NewPwInfoInput;
+  NewServerInput: NewServerInput;
   NewUserInput: NewUserInput;
   PwInfo: ResolverTypeWrapper<PwInfo>;
   Query: ResolverTypeWrapper<{}>;
+  Server: ResolverTypeWrapper<Server>;
   String: ResolverTypeWrapper<Scalars['String']>;
   UpdatePwInfoInput: UpdatePwInfoInput;
+  UpdateServerInput: UpdateServerInput;
   User: ResolverTypeWrapper<User>;
 };
 
@@ -216,11 +287,14 @@ export type ResolversParentTypes = {
   Message: Message;
   Mutation: {};
   NewPwInfoInput: NewPwInfoInput;
+  NewServerInput: NewServerInput;
   NewUserInput: NewUserInput;
   PwInfo: PwInfo;
   Query: {};
+  Server: Server;
   String: Scalars['String'];
   UpdatePwInfoInput: UpdatePwInfoInput;
+  UpdateServerInput: UpdateServerInput;
   User: User;
 };
 
@@ -233,6 +307,9 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   pwDeleter?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationPwDeleterArgs, 'id'>>;
   pwRegister?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationPwRegisterArgs, 'pw'>>;
   pwUpdater?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationPwUpdaterArgs, 'pw'>>;
+  serverDeleter?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationServerDeleterArgs, 'id'>>;
+  serverRegister?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationServerRegisterArgs, 'server'>>;
+  serverUpdater?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationServerUpdaterArgs, 'server'>>;
   userDeleter?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationUserDeleterArgs, 'id'>>;
   userRegister?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationUserRegisterArgs, 'user'>>;
 };
@@ -252,9 +329,25 @@ export type PwInfoResolvers<ContextType = any, ParentType extends ResolversParen
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   getPw?: Resolver<ResolversTypes['PwInfo'], ParentType, ContextType, RequireFields<QueryGetPwArgs, 'id'>>;
   getPws?: Resolver<Array<Maybe<ResolversTypes['PwInfo']>>, ParentType, ContextType, RequireFields<QueryGetPwsArgs, 'userId'>>;
+  getServer?: Resolver<ResolversTypes['Server'], ParentType, ContextType, RequireFields<QueryGetServerArgs, 'id'>>;
+  getServers?: Resolver<Array<Maybe<ResolversTypes['Server']>>, ParentType, ContextType, RequireFields<QueryGetServersArgs, 'userId'>>;
   getUser?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<QueryGetUserArgs, 'id'>>;
   getUserId?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<QueryGetUserIdArgs, 'email' | 'name'>>;
   getUsers?: Resolver<Array<Maybe<ResolversTypes['User']>>, ParentType, ContextType>;
+};
+
+export type ServerResolvers<ContextType = any, ParentType extends ResolversParentTypes['Server'] = ResolversParentTypes['Server']> = {
+  device?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  hostname?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  ip?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  password?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  port?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  url?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  usage?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  userId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  username?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
@@ -269,6 +362,7 @@ export type Resolvers<ContextType = any> = {
   Mutation?: MutationResolvers<ContextType>;
   PwInfo?: PwInfoResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  Server?: ServerResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
 };
 

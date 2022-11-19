@@ -37,3 +37,37 @@ export const getUserId = gql`
     }
   }
 `
+
+export const getServers = gql`
+  query Query($userId: Int!) {
+    getServers(userId: $userId) {
+      id
+      userId
+      usage
+      hostname
+      ip
+      username
+      password
+      device
+      port
+      url
+    }
+  }
+`
+
+export const getServer = gql`
+  query Query($id: Int!) {
+    getServer(id: $id) {
+      id
+      userId
+      usage
+      hostname
+      ip
+      username
+      password
+      device
+      port
+      url
+    }
+  }
+`
