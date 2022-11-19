@@ -4,10 +4,7 @@ import { typeDefs } from './schema'
 
 const cache = new InMemoryCache()
 
-const uri =
-  typeof window !== 'undefined'
-    ? 'http://localhost:4000/graphql'
-    : 'http://api:4000/graphql'
+const uri = 'http://192.168.1.38:4000/graphql'
 
 export const client = new ApolloClient({
   cache,
