@@ -26,7 +26,12 @@ export const HomeTable: React.FC = () => {
         </thead>
         <tbody>
           {cells.map((cell) => (
-            <CommonTable key={cell.id} editText={cell.service} id={cell.id} location="index">
+            <CommonTable
+              key={cell.id}
+              editText={cell.service}
+              id={cell.id}
+              location="index"
+            >
               <TableBodyMole>{cell.email}</TableBodyMole>
               <TableBodyMole>{cell.name}</TableBodyMole>
               <PwCell pw={cell.password} />

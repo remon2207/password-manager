@@ -7,7 +7,7 @@ import { useSubmit } from 'hooks'
 import { FormInput } from 'types'
 import { formSchema, PwInfoContext, SetStatusContext } from 'utils'
 
-import { CommonForm } from './CommonForm'
+import { CommonForm } from './index'
 
 export const HomeForm: React.FC = () => {
   const { id, service, email, name, password, twoFactor, secret } =

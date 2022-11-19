@@ -8,7 +8,7 @@ import { ServerFormInput } from 'types/form'
 import { ServerInfoContext } from 'utils/context/fetchData'
 import { serverFormSchema } from 'utils/schema'
 
-import { CommonForm } from './CommonForm'
+import { CommonForm } from './index'
 
 export const ServerForm: React.FC = () => {
   const { id, usage, hostname, ip, username, password, device, port, url } =

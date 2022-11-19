@@ -2,7 +2,7 @@ import { signOut } from 'next-auth/react'
 
 import { Nav, MenuBtn } from 'components/atoms'
 import { SideBar } from 'components/organisms'
-import { useToggle } from 'hooks/useToggle'
+import { useToggle } from 'hooks'
 
 type Props = {
   location: string
