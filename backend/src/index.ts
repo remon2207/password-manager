@@ -17,6 +17,11 @@ const app = express()
 
 const httpServer = http.createServer(app)
 
+const origin =
+  process.env.NODE_ENV === 'development'
+    ? 'http://192.168.1.39:3000'
+    : 'http://192.168.1.38:3000'
+
 const server = new ApolloServer<BaseContext>({
   typeDefs,
   resolvers,
@@ -27,7 +32,7 @@ const startServer = async () => {
   await server.start()
   app.use(
     '/graphql',
-    cors({ origin: 'http://192.168.1.38:3000' }),
+    cors({ origin }),
     express.json(),
     expressMiddleware(server)
   )
