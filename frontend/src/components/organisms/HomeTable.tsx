@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 
-import { TableWrapper } from 'components/atoms/tables/TableWrapper'
+import { TableWrapper } from 'components/atoms'
 import { TableBodyMole, TableHeaderMole } from 'components/molecules'
 import { CellDataContext } from 'utils'
 
@@ -26,11 +26,7 @@ export const HomeTable: React.FC = () => {
         </thead>
         <tbody>
           {cells.map((cell) => (
-            <CommonTable
-              key={cell.id}
-              editText={cell.service}
-              id={cell.id}
-            >
+            <CommonTable key={cell.id} editText={cell.service} id={cell.id}>
               <TableBodyMole>{cell.email}</TableBodyMole>
               <TableBodyMole>{cell.name}</TableBodyMole>
               <PwCell pw={cell.password} />

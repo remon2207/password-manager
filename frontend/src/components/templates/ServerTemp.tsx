@@ -1,9 +1,7 @@
 import { useContext } from 'react'
 
 import { Status } from 'components/atoms'
-import { HeaderOrga } from 'components/organisms'
-import { ServerTable } from 'components/organisms/ServerTable'
-import { SideBar } from 'components/organisms/SideBar'
+import { HeaderOrga, ServerTable, SideBar } from 'components/organisms'
 import { StatusContext } from 'utils'
 
 export const ServerTemp: React.FC = () => {

@@ -1,8 +1,7 @@
 import { signOut } from 'next-auth/react'
 
-import { Nav } from 'components/atoms'
-import { MenuBtn } from 'components/atoms/headers/MenuBtn'
-import { SideBar } from 'components/organisms/SideBar'
+import { Nav, MenuBtn } from 'components/atoms'
+import { SideBar } from 'components/organisms'
 import { useToggle } from 'hooks/useToggle'
 
 export const HeaderMole: React.FC = () => {
@@ -11,7 +10,7 @@ export const HeaderMole: React.FC = () => {
   return (
     <>
       <button
-        className="mx-auto xl:hidden outline-none"
+        className="mx-auto outline-none xl:hidden"
         onClick={handleClickToggle}
         type="button"
       >

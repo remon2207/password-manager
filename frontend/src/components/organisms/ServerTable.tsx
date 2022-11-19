@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 
-import { TableWrapper } from 'components/atoms/tables/TableWrapper'
+import { TableWrapper } from 'components/atoms'
 import { TableBodyMole, TableHeaderMole } from 'components/molecules'
 import { ServerCellDataContext } from 'utils'
 

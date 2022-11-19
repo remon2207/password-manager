@@ -1,4 +1,4 @@
-import { Side } from 'components/molecules/Side'
+import { Side } from 'components/molecules'
 
 type Props = {
   className?: string
