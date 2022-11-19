@@ -1,11 +1,14 @@
-import Link from 'next/link'
 import { useContext } from 'react'
 
-import { InputCell } from 'components/atoms'
+import { TableWrapper } from 'components/atoms/tables/TableWrapper'
 import { TableBodyMole, TableHeaderMole } from 'components/molecules'
 import { ServerCellDataContext } from 'utils'
 
+import { CommonTable } from './CommonTable'
+import { PwCell } from './PwCell'
+
 export const ServerTable: React.FC = () => {
+  const cells = useContext(ServerCellDataContext)
   const headerCellText = [
     'Usage',
     'Hostname',
@@ -16,46 +19,27 @@ export const ServerTable: React.FC = () => {
     'Port',
     'URL'
   ]
-  const cells = useContext(ServerCellDataContext)
-
-  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    e.target.select()
-  }
 
   return (
     <>
-      {cells.length > 0 && (
-        <table className="mx-auto w-full table-auto animate-slide-in-bottom lg:w-full xl:w-1/2">
-          <thead>
-            <TableHeaderMole headerCellText={headerCellText} />
-          </thead>
-          <tbody>
-            {cells.map((cell) => (
-              <tr key={cell.id}>
-                <TableBodyMole>
-                  <Link href={`/edit?id=${cell.id}`}>
-                    <span className="hover:underline">{cell.usage}</span>
-                  </Link>
-                </TableBodyMole>
-                <TableBodyMole>{cell.hostname}</TableBodyMole>
-                <TableBodyMole>{cell.ip}</TableBodyMole>
-                <TableBodyMole>{cell.username}</TableBodyMole>
-                <TableBodyMole>
-                  <InputCell
-                    className="focus:outline-none"
-                    onFocus={handleFocus}
-                    size={10}
-                    value={cell.password}
-                  />
-                </TableBodyMole>
-                <TableBodyMole>{cell.device}</TableBodyMole>
-                <TableBodyMole>{cell.port}</TableBodyMole>
-                <TableBodyMole>{cell.url}</TableBodyMole>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+      <TableWrapper>
+        <thead>
+          <TableHeaderMole headerCellText={headerCellText} />
+        </thead>
+        <tbody>
+          {cells.map((cell) => (
+            <CommonTable key={cell.id} editText={cell.usage} id={cell.id}>
+              <TableBodyMole>{cell.hostname}</TableBodyMole>
+              <TableBodyMole>{cell.ip}</TableBodyMole>
+              <TableBodyMole>{cell.username}</TableBodyMole>
+              <PwCell pw={cell.password} />
+              <TableBodyMole>{cell.device}</TableBodyMole>
+              <TableBodyMole>{cell.port}</TableBodyMole>
+              <TableBodyMole>{cell.url}</TableBodyMole>
+            </CommonTable>
+          ))}
+        </tbody>
+      </TableWrapper>
     </>
   )
 }
