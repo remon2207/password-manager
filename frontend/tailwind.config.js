@@ -4,6 +4,9 @@ module.exports = {
   content: ['./src/**/*.tsx'],
   theme: {
     extend: {
+      screens: {
+        iphonexr: '414px'
+      },
       animation: {
         'slide-in-bottom': 'slide-in-bottom 0.6s ease-out'
       },

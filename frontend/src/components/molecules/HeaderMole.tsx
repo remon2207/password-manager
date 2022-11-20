@@ -32,7 +32,7 @@ export const HeaderMole: React.FC<Props> = ({ location }) => {
         navText="Create new"
       />
       <Nav
-        className="mx-auto text-xl font-bold hover:underline xl:text-2xl"
+        className="mx-auto text-base font-bold hover:underline iphonexr:text-xl xl:text-3xl"
         href="/"
         navText="Password manager"
       />
