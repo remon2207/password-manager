@@ -1,4 +1,4 @@
-import '../styles/globals.css'
+import 'styles/globals.css'
 import { ApolloProvider } from '@apollo/client'
 import { Session } from 'next-auth'
 import { SessionProvider } from 'next-auth/react'

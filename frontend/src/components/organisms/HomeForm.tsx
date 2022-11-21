@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { ChangeEvent, useContext, useEffect, useState } from 'react'
+import { ChangeEvent, useContext, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { Nav } from 'components/atoms'
@@ -9,9 +9,10 @@ import {
   formSchema,
   PwInfoContext,
   SetStatusContext,
-  UserIdContext
+  UserIdContext,
+  SetToHashedContext,
+  ToHashedContext
 } from 'utils'
-import { SetToHashedContext, ToHashedContext } from 'utils/context/toggle'
 
 import { CommonForm } from './index'
 
