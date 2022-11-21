@@ -12,9 +12,20 @@ export const getPws = async (userId: number) => {
     where: {
       userId
     },
-    orderBy: {
-      service: 'asc'
-    }
+    orderBy: [
+      {
+        service: 'asc'
+      },
+      {
+        email: 'asc'
+      },
+      {
+        name: 'asc'
+      },
+      {
+        password: 'asc'
+      }
+    ]
   })
 
   return pws
