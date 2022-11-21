@@ -93,7 +93,10 @@ export const HomeForm: React.FC = () => {
           register={register('password')}
           type="text"
         />
-        <label className="flex flex-row justify-center items-center mt-2" htmlFor="to-hashed">
+        <label
+          className="mt-2 flex flex-row items-center justify-center"
+          htmlFor="to-hashed"
+        >
           <input checked={hashed} onChange={toHashed} type="checkbox" /> : To
           Hashed
         </label>
