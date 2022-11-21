@@ -55,3 +55,11 @@ export const serverUpdater = gql`
     }
   }
 `
+
+export const serverDeleter = gql`
+  mutation Mutation($id: Int!) {
+    serverDeleter(id: $id) {
+      message
+    }
+  }
+`

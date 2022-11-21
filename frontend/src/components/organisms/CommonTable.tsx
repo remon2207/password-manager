@@ -6,7 +6,6 @@ type Props = {
   children?: React.ReactNode
   editText: string
   id: number
-  pw?: string
   location: string
 }
 

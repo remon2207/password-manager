@@ -11,7 +11,11 @@ import { serverFormSchema } from 'utils/schema'
 
 import { CommonForm } from './index'
 
-export const ServerForm: React.FC = () => {
+type Props = {
+  children?: React.ReactNode
+}
+
+export const ServerForm: React.FC<Props> = ({ children }) => {
   const { id, usage, hostname, ip, username, password, device, port, url } =
     useContext(ServerInfoContext)
   const userId = useContext(UserIdContext)
@@ -107,6 +111,7 @@ export const ServerForm: React.FC = () => {
           <Nav className="page-transition-btn" href="/server" navText="Back" />
           <input className="page-transition-btn" type="submit" value="Send" />
         </div>
+        {children}
       </form>
     </>
   )
