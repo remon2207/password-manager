@@ -4,8 +4,6 @@ import { UseFormRegisterReturn } from 'react-hook-form'
 import { InputForm } from 'components/molecules'
 
 type Props = ComponentPropsWithoutRef<'input'> & {
-  pwId?: number
-  userId?: number
   register?: UseFormRegisterReturn
   error?: string
   htmlFor: string
