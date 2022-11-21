@@ -13,6 +13,7 @@ export const typeDefs = `#graphql
     userRegister(user: NewUserInput!): Message!
     userDeleter(id: Int!): Message!
     pwRegister(pw: NewPwInfoInput!): Message!
+    notHashedPwRegister(pw: NewPwInfoNotHashedInput!): Message!
     pwUpdater(pw: UpdatePwInfoInput!): Message!
     pwDeleter(id: Int!): Message!
     serverRegister(server: NewServerInput!): Message!
@@ -60,6 +61,16 @@ export const typeDefs = `#graphql
   }
 
   input NewPwInfoInput {
+    userId: Int!
+    service: String!
+    email: String!
+    name: String!
+    password: String!
+    twoFactor: Boolean!
+    secret: String!
+  }
+
+  input NewPwInfoNotHashedInput {
     userId: Int!
     service: String!
     email: String!

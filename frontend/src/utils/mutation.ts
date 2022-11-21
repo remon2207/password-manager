@@ -8,6 +8,14 @@ export const pwRegister = gql`
   }
 `
 
+export const notHashedPwRegister = gql`
+  mutation Mutation($pw: NewPwInfoNotHashedInput!) {
+    notHashedPwRegister(pw: $pw) {
+      message
+    }
+  }
+`
+
 export const pwUpdater = gql`
   mutation Mutation($pw: UpdatePwInfoInput!) {
     pwUpdater(pw: $pw) {

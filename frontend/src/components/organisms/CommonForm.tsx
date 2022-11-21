@@ -6,7 +6,7 @@ import { InputForm } from 'components/molecules'
 type Props = ComponentPropsWithoutRef<'input'> & {
   pwId?: number
   userId?: number
-  register: UseFormRegisterReturn
+  register?: UseFormRegisterReturn
   error?: string
   htmlFor: string
   labelName: string

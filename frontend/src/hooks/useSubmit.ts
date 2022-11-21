@@ -4,7 +4,12 @@ import { useContext } from 'react'
 
 import { ServerFormInput } from 'types/form'
 import { pwRegister, pwUpdater, UserIdContext } from 'utils'
-import { serverRegister, serverUpdater } from 'utils/mutation'
+import { SetToHashedContext, ToHashedContext } from 'utils/context/toggle'
+import {
+  notHashedPwRegister,
+  serverRegister,
+  serverUpdater
+} from 'utils/mutation'
 
 import type { SubmitHandler } from 'react-hook-form'
 import type { FormInput, Message } from 'types'
@@ -12,41 +17,71 @@ import type { FormInput, Message } from 'types'
 export const useSubmit = () => {
   const router = useRouter()
   const [addPw, { data: addPwMessage }] = useMutation<Message>(pwRegister)
+  const [addNotHashedPw, { data: addNotHashedMessage }] =
+    useMutation<Message>(notHashedPwRegister)
   const [updatePw, { data: updatePwMessage }] = useMutation<Message>(pwUpdater)
   const [addServer, { data: addServerMessage }] =
     useMutation<Message>(serverRegister)
   const [updateServer, { data: updateServerMessage }] =
     useMutation<Message>(serverUpdater)
   const userId = useContext(UserIdContext)
+  const toHashed = useContext(ToHashedContext)
+  const setHashed = useContext(SetToHashedContext)
+  console.log(toHashed)
 
-  const onSubmitHome: SubmitHandler<FormInput> = async (data) => {
-    if (router.pathname === '/new') {
+  const onSubmitHome: SubmitHandler<FormInput> = async ({
+    id,
+    service,
+    email,
+    name,
+    password,
+    twoFactor,
+    secret
+  }) => {
+    if (router.pathname === '/new' && toHashed) {
       await addPw({
         variables: {
           pw: {
             userId,
-            service: data.service,
-            email: data.email,
-            name: data.name,
-            password: data.password,
-            twoFactor: data.twoFactor,
-            secret: data.secret
+            service,
+            email,
+            name,
+            password,
+            twoFactor,
+            secret
           }
         }
       })
+      await router.push('/')
+    }
+    if (router.pathname === '/new' && !toHashed) {
+      await addNotHashedPw({
+        variables: {
+          pw: {
+            userId,
+            service,
+            email,
+            name,
+            password,
+            twoFactor,
+            secret
+          }
+        }
+      })
+      setHashed(true)
       await router.push('/')
     }
     if (router.pathname === '/edit') {
       await updatePw({
         variables: {
           pw: {
-            id: data.id,
-            service: data.service,
-            email: data.email,
-            name: data.name,
-            password: data.password,
-            twoFactor: data.twoFactor,
-            secret: data.secret
+            id,
+            service,
+            email,
+            name,
+            password,
+            twoFactor,
+            secret
           }
         }
       })
@@ -107,6 +142,7 @@ export const useSubmit = () => {
   return {
     onSubmitHome,
     addPwMessage,
+    addNotHashedMessage,
     updatePwMessage,
     onSubmitServer,
     addServerMessage,

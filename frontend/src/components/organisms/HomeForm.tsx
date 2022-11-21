@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useContext, useEffect } from 'react'
+import { ChangeEvent, useContext, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { Nav } from 'components/atoms'
@@ -11,6 +11,7 @@ import {
   SetStatusContext,
   UserIdContext
 } from 'utils'
+import { SetToHashedContext, ToHashedContext } from 'utils/context/toggle'
 
 import { CommonForm } from './index'
 
@@ -35,17 +36,26 @@ export const HomeForm: React.FC = () => {
     },
     resolver: yupResolver(formSchema)
   })
-  const { onSubmitHome, addPwMessage, updatePwMessage } = useSubmit()
+  const { onSubmitHome, addPwMessage, addNotHashedMessage, updatePwMessage } =
+    useSubmit()
   const setStatus = useContext(SetStatusContext)
+  const setHashed = useContext(SetToHashedContext)
+  const hashed = useContext(ToHashedContext)
+
+  const toHashed = (e: ChangeEvent<HTMLInputElement>) =>
+    setHashed(e.target.checked)
 
   useEffect(() => {
-    if (addPwMessage && !updatePwMessage) {
+    if (addPwMessage && !addNotHashedMessage && !updatePwMessage) {
       setStatus(addPwMessage.pwRegister.message)
+    }
+    if (addNotHashedMessage && !addPwMessage && !updatePwMessage) {
+      setStatus(addNotHashedMessage.notHashedPwRegister.message)
     }
     if (updatePwMessage && !addPwMessage) {
       setStatus(updatePwMessage.pwUpdater.message)
     }
-  }, [setStatus, updatePwMessage, addPwMessage])
+  }, [setStatus, updatePwMessage, addPwMessage, addNotHashedMessage])
 
   return (
     <>
@@ -82,6 +92,10 @@ export const HomeForm: React.FC = () => {
           register={register('password')}
           type="text"
         />
+        <label className="absolute top-[24.25rem] right-48" htmlFor="to-hashed">
+          <input checked={hashed} onChange={toHashed} type="checkbox" /> : To
+          Hashed
+        </label>
         <CommonForm
           error={errors.twoFactor?.message}
           htmlFor="twoFactor"

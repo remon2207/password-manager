@@ -21,6 +21,7 @@ export type Message = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  notHashedPwRegister: Message;
   pwDeleter: Message;
   pwRegister: Message;
   pwUpdater: Message;
@@ -29,6 +30,11 @@ export type Mutation = {
   serverUpdater: Message;
   userDeleter: Message;
   userRegister: Message;
+};
+
+
+export type MutationNotHashedPwRegisterArgs = {
+  pw: NewPwInfoNotHashedInput;
 };
 
 
@@ -72,6 +78,16 @@ export type MutationUserRegisterArgs = {
 };
 
 export type NewPwInfoInput = {
+  email: Scalars['String'];
+  name: Scalars['String'];
+  password: Scalars['String'];
+  secret: Scalars['String'];
+  service: Scalars['String'];
+  twoFactor: Scalars['Boolean'];
+  userId: Scalars['Int'];
+};
+
+export type NewPwInfoNotHashedInput = {
   email: Scalars['String'];
   name: Scalars['String'];
   password: Scalars['String'];
@@ -269,6 +285,7 @@ export type ResolversTypes = {
   Message: ResolverTypeWrapper<Message>;
   Mutation: ResolverTypeWrapper<{}>;
   NewPwInfoInput: NewPwInfoInput;
+  NewPwInfoNotHashedInput: NewPwInfoNotHashedInput;
   NewServerInput: NewServerInput;
   NewUserInput: NewUserInput;
   PwInfo: ResolverTypeWrapper<PwInfo>;
@@ -287,6 +304,7 @@ export type ResolversParentTypes = {
   Message: Message;
   Mutation: {};
   NewPwInfoInput: NewPwInfoInput;
+  NewPwInfoNotHashedInput: NewPwInfoNotHashedInput;
   NewServerInput: NewServerInput;
   NewUserInput: NewUserInput;
   PwInfo: PwInfo;
@@ -304,6 +322,7 @@ export type MessageResolvers<ContextType = any, ParentType extends ResolversPare
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  notHashedPwRegister?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationNotHashedPwRegisterArgs, 'pw'>>;
   pwDeleter?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationPwDeleterArgs, 'id'>>;
   pwRegister?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationPwRegisterArgs, 'pw'>>;
   pwUpdater?: Resolver<ResolversTypes['Message'], ParentType, ContextType, RequireFields<MutationPwUpdaterArgs, 'pw'>>;

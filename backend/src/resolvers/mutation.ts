@@ -1,4 +1,4 @@
-import { addPw, deletePw, pwUpdate } from './pw'
+import { AddNotHashedPw, addPw, deletePw, pwUpdate } from './pw'
 import { addServer, serverDelete, serverUpdate } from './server'
 import { addUser, deleteUser } from './user'
 
@@ -9,6 +9,16 @@ export const mutation: MutationResolvers = {
   userDeleter: (_, { id }) => deleteUser(id),
   pwRegister: (_, { pw }) =>
     addPw(
+      pw.userId,
+      pw.service,
+      pw.email,
+      pw.name,
+      pw.password,
+      pw.twoFactor,
+      pw.secret
+    ),
+  notHashedPwRegister: (_, { pw }) =>
+    AddNotHashedPw(
       pw.userId,
       pw.service,
       pw.email,

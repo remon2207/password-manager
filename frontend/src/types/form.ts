@@ -26,6 +26,9 @@ export type Message = {
   pwRegister: {
     message: string
   }
+  notHashedPwRegister: {
+    message: string
+  }
   pwUpdater: {
     message: string
   }
