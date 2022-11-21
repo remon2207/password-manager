@@ -3,6 +3,7 @@ import { useContext, useEffect } from 'react'
 
 import { HomeEdit } from 'components/templates/HomeEdit'
 import { ServerEdit } from 'components/templates/ServerEdit'
+import { useClick } from 'hooks'
 import { GetServer } from 'types/server'
 import { client, getPw, PwInfoContext, SetStatusContext } from 'utils'
 import { checkSession } from 'utils/checkSession'
@@ -17,6 +18,7 @@ type Props = GetPw & GetServer
 const Edit: NextPage<Props> = ({ getPw, getServer }) => {
   const setStatus = useContext(SetStatusContext)
   const router = useRouter()
+  const { onClickDelete } = useClick()
 
   useEffect(() => {
     setStatus('')
@@ -26,12 +28,12 @@ const Edit: NextPage<Props> = ({ getPw, getServer }) => {
     <>
       {router.query.location === 'index' && (
         <PwInfoContext.Provider value={getPw}>
-          <HomeEdit />
+          <HomeEdit onClick={() => onClickDelete(getPw.id)} />
         </PwInfoContext.Provider>
       )}
       {router.query.location === 'server' && (
         <ServerInfoContext.Provider value={getServer}>
-          <ServerEdit />
+          <ServerEdit onClick={() => onClickDelete(getServer.id)} />
         </ServerInfoContext.Provider>
       )}
     </>

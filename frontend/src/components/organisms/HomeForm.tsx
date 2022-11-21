@@ -16,7 +16,11 @@ import {
 
 import { CommonForm } from './index'
 
-export const HomeForm: React.FC = () => {
+type Props = {
+  children?: React.ReactNode
+}
+
+export const HomeForm: React.FC<Props> = ({ children }) => {
   const { id, service, email, name, password, twoFactor, secret } =
     useContext(PwInfoContext)
   const userId = useContext(UserIdContext)
@@ -119,6 +123,7 @@ export const HomeForm: React.FC = () => {
           <Nav className="page-transition-btn" href="/" navText="Back" />
           <input className="page-transition-btn" type="submit" value="Send" />
         </div>
+        {children}
       </form>
     </>
   )
