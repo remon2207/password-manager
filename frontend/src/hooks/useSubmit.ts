@@ -27,7 +27,6 @@ export const useSubmit = () => {
   const userId = useContext(UserIdContext)
   const toHashed = useContext(ToHashedContext)
   const setHashed = useContext(SetToHashedContext)
-  console.log(toHashed)
 
   const onSubmitHome: SubmitHandler<FormInput> = async ({
     id,
