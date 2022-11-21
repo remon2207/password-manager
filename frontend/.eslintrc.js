@@ -45,7 +45,6 @@ const config = {
       }
     ],
     '@typescript-eslint/no-shadow': 'off',
-    '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/no-misused-promises': [
       'error',
       {

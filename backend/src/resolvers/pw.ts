@@ -12,9 +12,20 @@ export const getPws = async (userId: number) => {
     where: {
       userId
     },
-    orderBy: {
-      service: 'asc'
-    }
+    orderBy: [
+      {
+        service: 'asc'
+      },
+      {
+        email: 'asc'
+      },
+      {
+        name: 'asc'
+      },
+      {
+        password: 'asc'
+      }
+    ]
   })
 
   return pws
@@ -85,6 +96,52 @@ export const addPw: Pw = async (
   }
   if (isEmail && !isEmptyPw) {
     return createPwInfo(hashPw)
+  }
+  throw new GraphQLError('Not email')
+}
+
+export const AddNotHashedPw: Pw = async (
+  userId,
+  service,
+  email,
+  name,
+  password,
+  twoFactor,
+  secret
+) => {
+  const isEmptyService = validator.isEmpty(service, { ignore_whitespace: true })
+  const isEmptyEmail = validator.isEmpty(email, { ignore_whitespace: true })
+  const isEmail = validator.isEmail(email)
+
+  const createPwInfo = async () => {
+    const message = {
+      message: 'Created Password info successfully'
+    }
+    await prisma.password.create({
+      data: {
+        userId,
+        service,
+        email,
+        name,
+        password,
+        twoFactor,
+        secret
+      }
+    })
+
+    return message
+  }
+
+  if (isEmptyService) {
+    throw new GraphQLError('Should input service name')
+  }
+
+  if (isEmptyEmail) {
+    return createPwInfo()
+  }
+
+  if (isEmail) {
+    return createPwInfo()
   }
   throw new GraphQLError('Not email')
 }

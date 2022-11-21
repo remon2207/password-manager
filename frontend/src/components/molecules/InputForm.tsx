@@ -6,7 +6,7 @@ import type { UseFormRegisterReturn } from 'react-hook-form'
 type Props = ComponentPropsWithoutRef<'input'> & {
   htmlFor: string
   labelName: string
-  register: UseFormRegisterReturn
+  register?: UseFormRegisterReturn
   error?: string
 }
 

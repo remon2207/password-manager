@@ -10,9 +10,20 @@ export const getServers = async (userId: number) => {
     where: {
       userId
     },
-    orderBy: {
-      usage: 'asc'
-    }
+    orderBy: [
+      {
+        usage: 'asc'
+      },
+      {
+        hostname: 'asc'
+      },
+      {
+        username: 'asc'
+      },
+      {
+        password: 'asc'
+      }
+    ]
   })
 
   return servers
