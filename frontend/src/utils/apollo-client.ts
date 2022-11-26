@@ -11,7 +11,7 @@ const uriSwitch = () => {
     }
     return 'http://api:4000/graphql'
   }
-  return 'http://192.168.1.38:4000/graphql'
+  return 'http://remon2207.com:4000/graphql'
 }
 
 const uri = uriSwitch()
