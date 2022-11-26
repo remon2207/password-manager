@@ -11,13 +11,11 @@ import express from 'express'
 import { resolvers } from 'resolvers'
 import { typeDefs } from 'schema'
 
-const port = Number(process.env.PORT)
-
 const app = express()
 
 const httpServer = http.createServer(app)
 
-const { NODE_ENV: nodeEnv, ORIGIN_URL: url } = process.env
+const { NODE_ENV: nodeEnv, ORIGIN_URL: url, PORT: port } = process.env
 const origin = url
 
 const server = new ApolloServer<BaseContext>({
@@ -39,6 +37,7 @@ const startServer = async () => {
 
 if (nodeEnv === 'development') {
   startServer().finally(() =>
+    // eslint-disable-next-line no-console
     console.log('🚀  Server ready at: http://localhost:4000/graphql')
   )
 }
