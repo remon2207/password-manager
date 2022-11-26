@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./dist/main.js",
-    "build": "webpack --config webpack.prod.js",
+    "build": "tsc && webpack --config webpack.prod.js",
     "dev": "nodemon src/index.ts",
     "dev:build": "webpack --config webpack.dev.js",
     "dev:watch": "webpack --watch --config webpack.dev.js & nodemon ./dist/main.js",
