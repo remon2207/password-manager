@@ -17,10 +17,8 @@ const app = express()
 
 const httpServer = http.createServer(app)
 
-const origin =
-  process.env.NODE_ENV === 'development'
-    ? 'http://192.168.1.39:3000'
-    : 'http://192.168.1.38:3000'
+const { NODE_ENV: nodeEnv, ORIGIN_URL: url } = process.env
+const origin = url
 
 const server = new ApolloServer<BaseContext>({
   typeDefs,
@@ -38,8 +36,6 @@ const startServer = async () => {
   )
   httpServer.listen({ port })
 }
-
-const nodeEnv = process.env.NODE_ENV
 
 if (nodeEnv === 'development') {
   startServer().finally(() =>
