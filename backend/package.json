@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./dist/main.js",
+    "start": "node ./dist/bundle.js",
     "build": "tsc && webpack --config webpack.prod.js",
     "dev": "nodemon src/index.ts",
     "dev:build": "webpack --config webpack.dev.js",
