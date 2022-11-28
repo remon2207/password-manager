@@ -69,7 +69,7 @@ export const HomeForm: React.FC<Props> = ({ children }) => {
           className="w-80"
           error={errors.service?.message}
           htmlFor="service"
-          labelName="Service"
+          labelName="サービス"
           register={register('service')}
           type="text"
         />
@@ -77,7 +77,7 @@ export const HomeForm: React.FC<Props> = ({ children }) => {
           className="w-80"
           error={errors.email?.message}
           htmlFor="email"
-          labelName="Email"
+          labelName="メールアドレス"
           register={register('email')}
           type="email"
         />
@@ -85,7 +85,7 @@ export const HomeForm: React.FC<Props> = ({ children }) => {
           className="w-80"
           error={errors.name?.message}
           htmlFor="name"
-          labelName="Name"
+          labelName="名前"
           register={register('name')}
           type="text"
         />
@@ -93,7 +93,7 @@ export const HomeForm: React.FC<Props> = ({ children }) => {
           className="w-80"
           error={errors.password?.message}
           htmlFor="password"
-          labelName="Password"
+          labelName="パスワード"
           register={register('password')}
           type="text"
         />
@@ -101,13 +101,20 @@ export const HomeForm: React.FC<Props> = ({ children }) => {
           className="mt-2 flex flex-row items-center justify-center"
           htmlFor="to-hashed"
         >
-          <input checked={hashed} onChange={toHashed} type="checkbox" /> : To
-          Hashed
+          <input
+            checked={hashed}
+            className="focus:ring-0"
+            onChange={toHashed}
+            type="checkbox"
+          />
+          ハッシュ化する
         </label>
         <CommonForm
+          className="focus:ring-0 cursor-pointer"
           error={errors.twoFactor?.message}
-          htmlFor="twoFactor"
-          labelName="TwoFactor"
+          htmlFor="two-factor"
+          id="two-factor"
+          labelName="2段階認証の有無"
           register={register('twoFactor')}
           type="checkbox"
         />
@@ -115,13 +122,13 @@ export const HomeForm: React.FC<Props> = ({ children }) => {
           className="w-80"
           error={errors.secret?.message}
           htmlFor="secret"
-          labelName="Secret"
+          labelName="シークレット"
           register={register('secret')}
           type="text"
         />
         <div className="mt-14 flex flex-row items-center justify-center gap-24">
-          <Nav className="page-transition-btn" href="/" navText="Back" />
-          <input className="page-transition-btn" type="submit" value="Send" />
+          <Nav className="page-transition-btn" href="/" navText="戻る" />
+          <input className="page-transition-btn" type="submit" value="送信" />
         </div>
         {children}
       </form>

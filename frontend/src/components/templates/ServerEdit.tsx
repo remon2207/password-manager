@@ -17,7 +17,7 @@ export const ServerEdit: React.FC<Props> = ({ onClick }) => {
             className="page-transition-btn mx-auto mt-14 block"
             onClick={onClick}
             type="button"
-            value="Delete"
+            value="削除"
           />
         </ServerForm>
       </main>

@@ -47,7 +47,7 @@ export const ServerForm: React.FC<Props> = ({ children }) => {
           className="w-80"
           error={errors.usage?.message}
           htmlFor="usage"
-          labelName="Usage"
+          labelName="使い方"
           register={register('usage')}
           type="text"
         />
@@ -55,7 +55,7 @@ export const ServerForm: React.FC<Props> = ({ children }) => {
           className="w-80"
           error={errors.hostname?.message}
           htmlFor="hostname"
-          labelName="Hostname"
+          labelName="ホスト名"
           register={register('hostname')}
           type="text"
         />
@@ -71,7 +71,7 @@ export const ServerForm: React.FC<Props> = ({ children }) => {
           className="w-80"
           error={errors.username?.message}
           htmlFor="username"
-          labelName="Username"
+          labelName="ユーザー名"
           register={register('username')}
           type="text"
         />
@@ -79,7 +79,7 @@ export const ServerForm: React.FC<Props> = ({ children }) => {
           className="w-80"
           error={errors.password?.message}
           htmlFor="password"
-          labelName="Password"
+          labelName="パスワード"
           register={register('password')}
           type="text"
         />
@@ -87,7 +87,7 @@ export const ServerForm: React.FC<Props> = ({ children }) => {
           className="w-80"
           error={errors.device?.message}
           htmlFor="device"
-          labelName="device"
+          labelName="デバイス"
           register={register('device')}
           type="text"
         />
@@ -95,7 +95,7 @@ export const ServerForm: React.FC<Props> = ({ children }) => {
           className="w-80"
           error={errors.port?.message}
           htmlFor="port"
-          labelName="Port"
+          labelName="ポート"
           register={register('port')}
           type="number"
         />
@@ -108,8 +108,8 @@ export const ServerForm: React.FC<Props> = ({ children }) => {
           type="text"
         />
         <div className="mt-14 flex flex-row items-center justify-center gap-24">
-          <Nav className="page-transition-btn" href="/server" navText="Back" />
-          <input className="page-transition-btn" type="submit" value="Send" />
+          <Nav className="page-transition-btn" href="/server" navText="戻る" />
+          <input className="page-transition-btn" type="submit" value="送信" />
         </div>
         {children}
       </form>
