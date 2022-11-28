@@ -35,7 +35,7 @@ export const HomeTable: React.FC = () => {
               <TableBodyMole>{cell.email}</TableBodyMole>
               <TableBodyMole>{cell.name}</TableBodyMole>
               <PwCell pw={cell.password} />
-              <TableBodyMole>{cell.twoFactor}</TableBodyMole>
+              <TableBodyMole>{cell.twoFactor ? 'true' : 'false'}</TableBodyMole>
               <TableBodyMole>{cell.secret}</TableBodyMole>
             </CommonTable>
           ))}
