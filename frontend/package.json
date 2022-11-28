@@ -11,7 +11,7 @@
     "format": "prettier --write ./src",
     "lint:format": "npm run lint:fix && npm run format",
     "cleanpkg": "rm -rf node_modules package-lock.json",
-    "rebuild": "rm -rf .next && npm run dev"
+    "rebuild": "rm -rf .next && npm run build"
   },
   "dependencies": {
     "@apollo/client": "^3.7.1",
