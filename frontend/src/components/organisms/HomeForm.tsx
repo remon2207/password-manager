@@ -111,7 +111,7 @@ export const HomeForm: React.FC<Props> = ({ children }) => {
           ハッシュ化する
         </label>
         <CommonForm
-          className="cursor-pointer focus:ring-0"
+          className="mr-1 cursor-pointer focus:ring-0"
           error={errors.twoFactor?.message}
           htmlFor="two-factor"
           id="two-factor"

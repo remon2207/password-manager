@@ -21,17 +21,31 @@ export const CommonForm: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <div className="flex flex-col items-center justify-center">
-        <InputForm
-          className={className}
-          error={error}
-          htmlFor={htmlFor}
-          id={id}
-          labelName={labelName}
-          register={register}
-          type={type}
-        />
-      </div>
+      {htmlFor === 'two-factor' ? (
+        <div className="flex flex-row-reverse items-center justify-center">
+          <InputForm
+            className={className}
+            error={error}
+            htmlFor={htmlFor}
+            id={id}
+            labelName={labelName}
+            register={register}
+            type={type}
+          />
+        </div>
+      ) : (
+        <div className="flex flex-col items-center justify-center">
+          <InputForm
+            className={className}
+            error={error}
+            htmlFor={htmlFor}
+            id={id}
+            labelName={labelName}
+            register={register}
+            type={type}
+          />
+        </div>
+      )}
     </>
   )
 }
