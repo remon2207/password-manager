@@ -29,19 +29,19 @@ export const HeaderMole: React.FC<Props> = ({ location }) => {
       <Nav
         className="page-transition-btn mx-auto scale-75 xl:scale-100"
         href={`/new?location=${location}`}
-        navText="Create new"
+        navText="新規作成"
       />
       <Nav
         className="mx-auto text-base font-bold hover:underline iphonexr:text-xl xl:text-3xl"
         href="/"
-        navText="Password manager"
+        navText="パスワード管理"
       />
       <button
         className="page-transition-btn mx-auto scale-75 xl:scale-100"
         onClick={() => signOut({ callbackUrl: '/signin' })}
         type="button"
       >
-        Sign out
+        サインアウト
       </button>
     </>
   )

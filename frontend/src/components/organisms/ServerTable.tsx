@@ -10,13 +10,13 @@ import { PwCell } from './PwCell'
 export const ServerTable: React.FC = () => {
   const cells = useContext(ServerCellDataContext)
   const headerCellText = [
-    'Usage',
-    'Hostname',
+    '使い方',
+    'ホスト名',
     'IP',
-    'Username',
-    'Password',
-    'Device',
-    'Port',
+    'ユーザー名',
+    'パスワード',
+    'デバイス',
+    'ポート',
     'URL'
   ]
 

@@ -10,12 +10,12 @@ import { PwCell } from './PwCell'
 export const HomeTable: React.FC = () => {
   const cells = useContext(CellDataContext)
   const headerCellText = [
-    'Service',
-    'Email',
-    'Name',
-    'Password',
-    'Two Factor',
-    'Secret'
+    'サービス',
+    'メールアドレス',
+    '名前',
+    'パスワード',
+    '2段階認証の有無',
+    'シークレット'
   ]
 
   return (
@@ -35,7 +35,7 @@ export const HomeTable: React.FC = () => {
               <TableBodyMole>{cell.email}</TableBodyMole>
               <TableBodyMole>{cell.name}</TableBodyMole>
               <PwCell pw={cell.password} />
-              <TableBodyMole>{cell.twoFactor ? 'true' : 'false'}</TableBodyMole>
+              <TableBodyMole>{cell.twoFactor ? '有' : '無'}</TableBodyMole>
               <TableBodyMole>{cell.secret}</TableBodyMole>
             </CommonTable>
           ))}
