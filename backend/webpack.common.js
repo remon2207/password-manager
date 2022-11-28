@@ -2,10 +2,10 @@ const path = require('path')
 const nodeExternals = require('webpack-node-externals')
 
 const config = {
-  entry: path.resolve(__dirname, 'dist/index.js'),
+  entry: path.resolve(__dirname, 'src/index.ts'),
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'index.js'
   },
   externalsPresets: {
     node: true

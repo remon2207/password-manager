@@ -1,7 +1,7 @@
 {
   "ignore": [".git", "node_modules"],
   "execMap": {
-    "js": "node ./dist/main.js"
+    "js": "node ./dist/index.js"
   },
   "env": {
     "NODE_ENV": "development"
