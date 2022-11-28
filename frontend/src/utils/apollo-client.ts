@@ -3,7 +3,7 @@ import { ApolloClient, InMemoryCache } from '@apollo/client'
 const cache = new InMemoryCache()
 
 const nodeEnv = process.env.NODE_ENV
-const localIp = process.env.LOCAL_IP
+const localIp = process.env.NEXT_PUBLIC_LOCAL_IP
 
 const uriSwitch = () => {
   if (nodeEnv === 'development') {
