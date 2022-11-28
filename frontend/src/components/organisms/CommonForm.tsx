@@ -16,7 +16,8 @@ export const CommonForm: React.FC<Props> = ({
   labelName,
   register,
   type,
-  className
+  className,
+  id
 }) => {
   return (
     <>
@@ -25,6 +26,7 @@ export const CommonForm: React.FC<Props> = ({
           className={className}
           error={error}
           htmlFor={htmlFor}
+          id={id}
           labelName={labelName}
           register={register}
           type={type}

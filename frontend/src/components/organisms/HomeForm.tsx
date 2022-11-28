@@ -98,19 +98,20 @@ export const HomeForm: React.FC<Props> = ({ children }) => {
           type="text"
         />
         <label
-          className="mt-2 flex flex-row items-center justify-center"
+          className="absolute top-[21.5rem] right-7 mt-2 flex cursor-pointer flex-row items-center justify-center sm:right-32 md:right-52 lg:right-80 xl:right-[28rem] 2xl:right-[42rem]"
           htmlFor="to-hashed"
         >
           <input
             checked={hashed}
-            className="focus:ring-0"
+            className="mr-1 cursor-pointer focus:ring-0"
+            id="to-hashed"
             onChange={toHashed}
             type="checkbox"
           />
           ハッシュ化する
         </label>
         <CommonForm
-          className="focus:ring-0 cursor-pointer"
+          className="cursor-pointer focus:ring-0"
           error={errors.twoFactor?.message}
           htmlFor="two-factor"
           id="two-factor"

@@ -19,12 +19,13 @@ export const InputForm: React.FC<Props> = ({
   defaultValue,
   checked,
   className,
-  defaultChecked
+  defaultChecked,
+  id
 }) => {
   return (
     <>
       <Description
-        className="my-2"
+        className="my-2 cursor-pointer"
         error={error}
         errorClassName="absolute right-[570px] rounded-md bg-red-300 py-0.5 px-2 text-white"
         htmlFor={htmlFor}
@@ -37,6 +38,7 @@ export const InputForm: React.FC<Props> = ({
         className={className}
         defaultChecked={defaultChecked}
         defaultValue={defaultValue}
+        id={id}
       />
     </>
   )
