@@ -44,7 +44,6 @@ model Server {
   ip        String   @db.VarChar(255)
   username  String   @db.VarChar(255)
   password  String   @db.VarChar(255)
-  twoFactor Boolean  @default(false)
   device    String   @db.VarChar(255)
   port      Int
   url       String   @db.VarChar(255)
