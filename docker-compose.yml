@@ -7,8 +7,6 @@ services:
     container_name: 'api'
     volumes:
       - './backend:/usr/src/app'
-    environment:
-      NODE_ENV: 'development'
     ports:
       - '${API_PORT:-4000}:4000'
     command: 'npm run dev:watch'
@@ -31,8 +29,6 @@ services:
     container_name: 'nextjs'
     volumes:
       - './frontend:/usr/src/app'
-    environment:
-      NODE_ENV: 'development'
     ports:
       - '${NEXT_PORT:-3000}:3000'
     command: 'npm run dev'
